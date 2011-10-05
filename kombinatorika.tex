@@ -1,4 +1,4 @@
-%Copyrighted by Pijus Simonaits, 2010, 2011. Some rights reserved.
+%Copyrighted by Pijus Simonaitis, 2010, 2011. Some rights reserved.
 
 \chapter{Kombinatorika}
 \thispagestyle{empty}
@@ -1203,7 +1203,7 @@ suminius žaidimus:
   vertės apibrėžimo. Tuomet turime dvi galimybes:
 
   \begin{enumerate}
-    \item Iš suminio žaidimo pozicijos $Q_A+Q_B$ su $F(Q_A,Q_B)=a\oplus b$
+    \item Iš suminio žaidimo pozicijos $Q_A+Q_B$ su $F(Q_A+Q_B)=a\oplus b$
       galime patekti į kitą poziciją su įverčiu $a\oplus b$. Nemažindami
       bendrumo tariame, kad tam pasiekti atliktume ėjimą žaidime $A$.
       Atlikę ėjimą patektume į poziciją žaidime $A$ su NIM verte $c$ ir
@@ -1272,26 +1272,28 @@ besikaitaliojančių laiminčių ir pralaiminčių pozicijų. Jei tu pralaimi, t
 gudriais ėjimais gali tik pratęsti savo kančią. Dabar mes žaidimą
 sutraukėme į vieną skaičių, žaidimo NIM vertę. Ji ne tik parodo, kuris
 žaidėjas laimės šį žaidimą, bet leidžia išsiaiškinti, kas laimės suminius
-žaidimus, kurių sudedamoji nagrinėjamas žaidimas yra. 
+žaidimus, kurių sudedamoji nagrinėjamas žaidimas yra. Jei kas susidomėjote šia tema, tai galite tęsti savišvietą skaitinėdami J. H. Conway  "On numbers and games" ir to paties autoriaus su bendražygiais išleistą veikalą  "Winning Ways for Your Mathematical Plays"
 
 \subsubsection{Uždaviniai}
 
 \begin{enumerate}
-
-  %%\item Žaidėjai pakaitomis renkasi skaičius iš aibės ${1, 2, 3, 4, 5, 6, 7,
-    %%8, 9}$. Jei žaidėjas surenka tris skaičius, kurių suma lygi $15$, jis
-    %%laimi.  Kaip baigiasi žaidimas, jei žaidžiama optimaliai? Kokiam gerai
-    %%žinomam žaidimui ši užduotis yra izomorfiška?
-    %%%Kryžiukams-nuliukams. Įsitikinkite tuo!
-
-  \item Merlinkas sugalvoja skaičių $N$. Matekaralius nupiešia $N$
+  \item Merlinkas sugalvoja natūrinį skaičių $N>1$. Matekaralius nupiešia $N$
     netuščių stačiakampių (nebūtinai lygių), sudarytų iš vienetinių langelių.
     Merlinkas iš piešinėlių išburia analogiškas šokolado plyteles.
     Jis pirmasis atsilaužia nuo pasirinktos plytelės šokolado (laužia išilgai
     linijų) ir jį suvalgo arba suvalgo visą plytelę. Ėjimai vyksta
     pakaitomis. Pralaimi tas žaidėjas, kuris nebegali atlikti ėjimo.  Ar
     Merlinkas turi laiminčiąją strategiją?  
-    %Prisiminkite NIM : ] 
+    %Matekaralius tikrai perskaitė visą skyrelį, įsisavino medžiagą ir nori
+    %šokolado.  Jei Matekaralius nepersitemptų ir nupieštų stačiakampius, kurių
+    %viena kraštinių yra vienetinė, tai gautume NIM žaidimą su N krūvelių,
+    %kurių dydžius pasirinko Matekaralius. Jis bus antrasis žaidėjas, tad turi
+    %pasirinkti tokias krūveles, kurių NIM suma būtų lygi $0$. Ar jis gali taip
+    %padaryti? Jei $N$ lyginis, tai jam tereikia nupiešti daug lygių krūvelių
+    %(jų dydžiai priklauso nuo šokolado poreikio), jei $N$ nelyginis, tai jis
+    %yra nemažesnis už $3$, o $N(1,2,3)=0$, tad Matekaralius visada galės
+    %nupiešti tokius stačiakampius ir lyginį skaičių lygių krūvelių. Merlinkas
+    %neturi laiminčiosios strategijos. 
 
   \item Ant stalo yra $n$ akmenukų. Žaidėjas gali paimti nedaugiau negu pusę
     jų. Žaidėjai $A$ ir $B$ ėjimus atlieka pakaitomis, pradeda $A$.  Laimi
@@ -1303,6 +1305,15 @@ sutraukėme į vieną skaičių, žaidimo NIM vertę. Ji ne tik parodo, kuris
     %įrodyti, kad nulines vertes turės skaičiai, kurių forma $2^k-1$, kur $k$
     %sveikasis neneigiamas. Taigi jei $n=2^k-1$, tada laimi $B$, kitais
     %atvejais pergalę švenčia $A$. 
+
+  \item Žaidėjai pakaitomis renkasi skaičius iš aibės ${1, 2, 3, 4, 5, 6, 7,
+    8, 9}$. Jei žaidėjas surenka tris skaičius, kurių suma lygi $15$ - jis
+    laimi.  Kaip baigiasi žaidimas, jei žaidžiama optimaliai? Šis žaidimas
+    gali būti pakeistas į gerai žinomą žaidimą $A$ taip, kad kiekvienas ėjmas
+    turimame žaidime turėtų vieną ir vienintelį atitinkamą ėjimą $A$. Kas tai
+    per žaidimas $A$? 
+    %Tai yra Kryžiukai-nuliukai. Pamėginkite susikonstruoti magiškąjį kvadratą
+    %arba panagrinėti visas galimas trijų skaičių sumas lygias $15$. 
 
   \item Įrodykite, kad jei turime $n$ bešalių normalių žaidimų $A_{1},
     \ldots, A{n}$, tai suminio žaidimo bet kurios pozicijos NIM vertė bus
@@ -1322,7 +1333,8 @@ sutraukėme į vieną skaičių, žaidimo NIM vertę. Ji ne tik parodo, kuris
     atlikti ėjimo. Kuris žaidėjas turi laiminčiąją strategiją su $n=9$, $n=13$,
     $n=15$? \footnote{Tai Project Euler 306-tas uždavinys. Tai gana įdomus projektas
     tiems, kurie nėra super programuotojai. Galite pabandyti išspręsti ir visą
-    uždavinį.}
+    uždavinį. 301-as uždavinys nagrinėja NIM, jei paieškosite, rasite ir
+    daugiau uždavinių tinkamų šiam skyreliui}
     %Tarkime, kad visiems ilgiams mažesniems už $n$ jau priskyrėme NIM vertes.
     %Pastebime, kad jei juostą kur nors nuspalviname tai taip ją padaliname į du
     %regionus. Jei juosta yra ilgio $n$, tai galime ją padalinti $[n/2]$ skirtingų
@@ -1333,7 +1345,8 @@ sutraukėme į vieną skaičių, žaidimo NIM vertę. Ji ne tik parodo, kuris
     %algoritmą visai nesudėtinga išsiaiškinti, kurios pozicijos laiminčios, o kurios
     %pralaiminčios.
 
-  %%\item Turima šaškių lentą, kuri tęsiasi į begalybę tiek į viršų, tiek į dešinę,
+
+    %%\item Turima šaškių lentą, kuri tęsiasi į begalybę tiek į viršų, tiek į dešinę,
     %%bet turi fiksuotą apatinį kairį kampą. Kažkur lentoje lūkuriuoja Alisa.
     %%Žaidžia Vytautas ir Aleksas, pradeda pastarasis. Jie ėjimo metu liepia Alisai
     %%eiti į kairę, apačią arba įstrižaine į apačią ir kairę per norimą langelių
@@ -1353,9 +1366,9 @@ sutraukėme į vieną skaičių, žaidimo NIM vertę. Ji ne tik parodo, kuris
     kad pirmasis žaidėjas turėtų laiminčiąją strategiją?
     %Žaidimas identiškas NIM žaidimui su trimis krūvelėmis, kurių dydžiai yra
     %$a$, $b$ ir $c$ (jei tariame, kad kampinio langelio kordinatės lygios
-    %(1,1,1) ir $a$, $b$ ir $c$, jei kampinio langelio kordinatės lygios (0,0,0).
-    %Tad sąryšis, kurį turi tenkinti $a$, $b$ ir $c$ yra $a\oplus b\ oplus
-    %c \neq 0$, arba $a-1\oplus \b-1\ oplus c-1 \neq 0$.
+    %(1,1,1) ir $a$, $b$ ir $c$, jei kampinio langelio kordinatės lygios
+    %$(0,0,0)$. Tad sąryšis, kurį turi tenkinti $a$, $b$ ir $c$ yra
+    %$a\oplus b \oplus c \neq 0$, arba $a-1 \oplus b-1 \oplus c-1 \neq 0$.
 
   \item \text{[Misere NIM]} Žaidžiamas NIM, bet pralaimi tas, kuris atlieka
     paskutinį ėjimą. Kaip žaisti turint vieną, dvi, $n$ krūvelių?
@@ -1369,14 +1382,22 @@ sutraukėme į vieną skaičių, žaidimo NIM vertę. Ji ne tik parodo, kuris
     %visos pozicijos $(n,n)$, kur $n$ daugiau už $1$, bus pralaiminčios. Iš
     %ties, tarkime žaidimas prasideda tokioje pozicijoje. Tada antrasis
     %žaidėjas gali atlikinėti simetriškus žaidimus tol, kol pirmasis
-    %vienoje iš krūvelių padarys 0 arba 1 akmenuką. Abiem atvejais antrasis
+    %vienoje iš krūvelių padarys $0$ arba $1$ akmenuką. Abiem atvejais antrasis
     %galės ant stalo palikti tik vieną akmenuką ir taip laimėti žaidimą. 
     %
     %Bendru atveju žaidžiama labai panašiai. Matome, kad čia svarbiausios
-    %yra vienetinės krūvelės (turinčios vieną akmenuką). Žaidimas
-    %žaidžiamas lygiai taip pat kaip normalus NIM iki to momento, kai
-    %laiminčiojo žaidėjo ėjimas gali ant stalo palikti tik nelyginį skaičių
-    %vienetinių krūvelių (jokių kitų), tada jis atlieka šį ėjimą ir laimi
-    %žaidimą. 
+    %yra vienetinės krūvelės (turinčios vieną akmenuką). Jei ant stalo yra
+    %ne vienetinių krūvelių, tai žaidimas žaidžiamas lygiai taip pat kaip
+    %normalus NIM iki to momento, kai laiminčiojo žaidėjo ėjimas gali ant
+    %stalo palikti tik nelyginį skaičių vienetinių krūvelių (jokių kitų),
+    %tada jis atlieka šį ėjimą ir laimi.  Akylesnis iš jūsų paklaus, kodėl
+    %"pralaimintysis" žaidėjas negalės pirmas atlikti tokio ėjimo. Bet
+    %atsiminkime, kokioj baloj jis tupi, ogi tokioj, kurios NIM vertė
+    %visada yra lygi $0$.  Jei jis gauna nelyginį vienetinių krūvelių
+    %skaičių sumažindamas nevienetinę krūvelę, tai jis per klaidą buvo
+    %atsidūręs nenulinėje pozicijoje ir visgi yra laimintysis žaidėjas.
+    %Prieštara. Jei jis tai atlieka nuimdamas vienetinę krūvelę, tai
+    %laimintysis žaidėjas pats galėjo nuimti tą krūvelę arba palikti viena
+    %daugiau ir taip pateikti nelyginį vienetinių krūvelių skaičių.
 \end{enumerate}
 
