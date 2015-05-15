@@ -80,6 +80,7 @@ Pastebime, kad $a_1$ galime rasti prie $b$ pridėję $\frac{1}{2}$ vektoriaus i�
 
 PAVEIKSLIUKAS2
 
+\textit {Pastaba.} Pastebėkime, kad tuo pačiu būdu galime rasti tašką ant atkarpos, kuris ją dalija bet kokiu duotu santykiu.
 
 
 
@@ -330,28 +331,324 @@ Tegul $O$ yra apie trikampį $ABC$ apibrėžto apskritimo centras. Taškai $P$ i
 \begin{sprendimas}
 
 Tegu apie $\bigtriangleup ABC$ apibrėžtas apskritimas yra vienetinis. Kadangi $P$ ir $Q$ priklauso $CA$ ir $AB$, atitinkamai, tai
-$$\overline{p}=\tfrac{a+c-p}{ac},$$
-$$\overline{q}=\tfrac{a+b-q}{ab}.$$
+$$\overline{p}=\frac{a+c-p}{ac},$$
+$$\overline{q}=\frac{a+b-q}{ab}.$$
 Mums reikia įrodyti:
-$$(p-o)(\overline{p-o})=(q-o)(\overline{q-o}) \Leftrightarrow p\overline{p}=q\overline{q} \Leftrightarrow \tfrac{p(a+c-p)}{ac}=\tfrac{q(a+b-q)}{ab}.$$
+$$(p-o)(\overline{p-o})=(q-o)(\overline{q-o}) \Leftrightarrow p\overline{p}=q\overline{q} \Leftrightarrow \frac{p(a+c-p)}{ac}=\frac{q(a+b-q)}{ab}.$$
 
 Liko neišnaudota viena sąlyga - tiesė $PQ$ liečia apskritimą $\Gamma$. Galima bandyti susirasti apskritimo centrą ir įrodyti kad statmuo iš $M$ tiesei $PQ$ eina per $\Gamma$ centrą, arba naudotis tuo, kad $\angle QMK=\angle MLK$ tada ir tik tada, kai tiesė $PQ$ yra $\Gamma$ liestinė taške $M$. Pasižymime $\omega=\angle QMK=\angle MLK$, tada:
-$$\tfrac{m-q}{|m-q|}\omega=\tfrac{m-k}{|m-k|} \Rightarrow \tfrac{m-q}{\overline{m}-\overline{q}}\omega^2=\tfrac{m-k}{\overline{m}-\overline{k}} \Leftrightarrow \omega^2=\tfrac{m-k}{\overline{m}-\overline{k}} \tfrac{\overline{m}-\overline{q}}{m-q}.$$
+$$\frac{m-q}{|m-q|}\omega=\frac{m-k}{|m-k|} \Rightarrow \frac{m-q}{\overline{m}-\overline{q}}\omega^2=\frac{m-k}{\overline{m}-\overline{k}} \Leftrightarrow \omega^2=\frac{m-k}{\overline{m}-\overline{k}} \frac{\overline{m}-\overline{q}}{m-q}.$$
 Analogiškai ir su m, l, k:
-$$\tfrac{l-m}{|l-m|}\omega=\tfrac{l-k}{|l-k|} \Rightarrow  \omega^2=\tfrac{l-m}{\overline{l}-\overline{m}}\tfrac{\overline{l}-\overline{k}}{l-k}$$
+$$\frac{l-m}{|l-m|}\omega=\frac{l-k}{|l-k|} \Rightarrow  \omega^2=\frac{l-m}{\overline{l}-\overline{m}}\frac{\overline{l}-\overline{k}}{l-k}$$
 Sulyginame reiškinius, įsistatome m, k ir l reikšmes, tada p ir q jungtinius:
 
 \begin{equation*}
- \tfrac{m-k}{\overline{m}-\overline{k}} \tfrac{\overline{m}-\overline{q}}{m-q}=\tfrac{l-m}{\overline{l}-\overline{m}}\tfrac{\overline{l}-\overline{k}}{l-k} \Leftrightarrow 
+ \frac{m-k}{\overline{m}-\overline{k}} \frac{\overline{m}-\overline{q}}{m-q}=\frac{l-m}{\overline{l}-\overline{m}}\frac{\overline{l}-\overline{k}}{l-k} \Leftrightarrow 
 \end{equation*}
 \begin{equation*}
  \Leftrightarrow (q-b)(\overline{p}-\overline{q})(c-p)(\overline{c}+\overline{q}-\overline{b}-\overline{p})=(p-q)(\overline{q}-\overline{b})(c+q-b-p)(\overline{c}-\overline{p}) \Leftrightarrow
 \end{equation*}
 \begin{equation*}
-\Leftrightarrow (q-b)(\tfrac{ab-ac+qc-pb}{abc})(c-p)(\tfrac{pb-qc}{abc})=(p-q)(\tfrac{b-q}{ab})(\tfrac{p-c}{ac})(c+q-b-p),
+\Leftrightarrow (q-b)(\frac{ab-ac+qc-pb}{abc})(c-p)(\frac{pb-qc}{abc})=(p-q)(\frac{b-q}{ab})(\frac{p-c}{ac})(c+q-b-p),
 \end{equation*}
 gautą lygybę galima nesunkiai suprastinti ir pertvarkyti į reiškinį, kurį mums reikėjo įrodyti.
 \end{sprendimas}
+
+
+\begin{pavnr}
+Į trikampį $ABC$ įbrėžtas apskritimas su centru $I$ liečia kraštines $BC, CA, AB$ taškuose $D, E$ ir $F$ atitinkamai. Tegu $M$ ir $N$ yra atkarpų $AB$ ir $BC$ vidurio taškai, o $X$ yra taškas, kur susikerta tiesės $NM$ ir $DF$. Įrodyti (a) tiesės $IC, NM, FD$ eina per vieną tašką ir (b) $\angle AXC = \frac{\pi}{2}$. 
+\end{pavnr}
+
+\begin{sprendimas}
+Pradėkime nuo (a) dalies. Vienetinis apskritimas bus įbrėžtinis į $\Delta ABC$ apskritimas, todėl mes stengsimės visus taškus išreikšti per $d$, $e$ ir $f$. Tarkime, kad $X$ yra taškas, kur kertasi $DF$ ir $IC$. Tuomet užduotis prašo mūsų įrodyti, kad $X$ priklauso tiesei $NM$. 
+
+Trikampio kraštinės yra įbrėžto trikampio liestinės, todėl turime, jog:
+$$ a =\frac{2ef}{e+f},$$
+$$ b=\frac{2df}{d+f},$$
+$$ c=\frac{2ed}{e+d}.$$
+Be to, galioja lygybės $\bar{d}= \frac{1}{d}, \bar{e}= \frac{1}{e}, \bar{f}= \frac{1}{f}$, nes taškai $d, e, f$ priklauso vienetiniam apskritimui. Iš to gauname
+$$ \bar a =\frac{2}{e+f}, \bar b=\frac{2}{d+f}, \bar c=\frac{2}{e+d}.$$
+Naudojamės pirmąja teorema ir gauname
+$$ m=\frac{a+b}{2}, \phantom{a} n=\frac{c+b}{2}.$$
+Taškas $X$ priklauso tiesei $IC$:
+$$ \frac{c-i}{\bar{c}-\overline{i}}=\frac{x-i}{\bar{x} - \overline{i}} {\phantom{a}}\Leftrightarrow \phantom{a} \bar{x}= \frac{\bar{c}}{c}\cdot  x $$ 
+Taškas $X$ taip pat priklauso tiesei $FD$, todėl turime:
+$$\frac{f-d}{\bar{f}-\bar{d}}=\frac{x-f}{\bar{x} - \bar{f}} \Leftrightarrow \bar{x}= -\frac{1}{fd}\cdot  (x-f)+\bar{f} $$
+Sulyginame abi $\bar{x}$ išraiškas ir gauname, kad 
+$$ x = e \cdot \frac{d+e}{f+e}.$$
+Liko parodyti, jog gautas taškas $X$ priklauso tiesei $NM$, naudojamės penktąja teorema:
+$$ \frac{m-n}{\bar{m}-\bar{n}}=\frac{x-n}{\bar{x} - \bar{n}}.$$
+Paskutinę lygybę įrodome įsistatę $m$, $n$ ir $x$ išraiškas per $d, e$ ir $f$.
+
+Dalyje (b) tereikia įrodyti, jog galioja lygybė: $\frac{a-x}{\bar{a}-\bar{x}}= - \frac{x-c}{\bar{x} - \bar{c}}$, ką nesunkiai padarome įsistatę reikiamas išraiškas.
+\end{sprendimas}
+
+\begin{pavnr} 
+(MEMO 2010)
+
+Duotas keturkampis $ABCD$, apie kurį galima apibrėžti apskritimą. $E$ yra toks įstrižainės $AC$
+taškas, kad $AD = AE$ ir $CB = CE$. $M$ yra apskritimo $k$, apibrėžto apie trikampį $BDE$,
+centras. Apskritimas $k$ kerta tiesę $AC$ taškuose $E$ ir $F$ . Įrodykite, kad tiesės $FM, AD$ ir $BC$ kertasi viename taške.
+\end{pavnr}
+\begin{sprendimas}
+Tegu apie $B, D, E$ apibrėžtas apskritimas yra vienetinis apskritimas kompleksinėje plokštumoje, tada $F$ irgi priklauso šiam apskritimui, o $m=0$. Kadangi $A\in EF$ iš šeštos teoremos gauname: $\overline{a}=\frac{e+f-a}{ef}$. $AE = AD \Leftrightarrow |a-e|=|a-d| \Leftrightarrow (a-e)\overline{(a-e)}=(a-d)\overline{(a-d)}$. Iš šių lygčių randame
+$$a=\frac{d(e+f)}{d+f}.$$
+Analogiškai randame
+$$c=\frac{b(e+f)}{b+f}.$$
+Kadangi $A, B, C, D$ priklauso vienam apskritimui, tai atlikę prastinimus, gauname
+$$\frac{a-c}{b-c}:\frac{a-d}{b-d}\in \mathbb{R} \Leftrightarrow \frac{a-c}{b-c}:\frac{a-d}{b-d}= \overline{\bigg(\frac{a-c}{b-c}:\frac{a-d}{b-d}\bigg)} \Leftrightarrow bed=f^3.$$
+Tarkime, kad $FM$ ir $AD$ kertasi taške $x_1$, o $FM$ ir $BC$ taške $x_2$. Kadangi $X_1, X_2 \in FM$, tai iš šeštos teoremos gauname $\frac{x_i-m}{(\overline{x_i}-\overline{m})}=\frac{f-m}{(\overline{f}-\overline{m})} \Leftrightarrow          \overline{x_i}=\frac{x_i}{f^2}$ ($i \in \{1, 2\})$.
+Kadangi $X_1 \in AD$, gauname $\frac{x_1-d}{(\overline{x_1}-\overline{d})}=\frac{a-d}{(\overline{a}-\overline{d})} \Rightarrow x_1=\frac{df^2(e+f)}{(f^3+d^2e)}$,
+analogiškai $x_2=\frac{bf^2(e+f)}{(f^3+b^2e)}$.
+Iš čia $bed=f^3 \Rightarrow x_1=x_2.$
+\end{sprendimas}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Tęsiant apie vienetinį apskritimą}
+
+Iš tiesų, šio skyriaus uždaviniai mažai skiriasi nuo praeitojo, nes mes vėl turime vieną pagrindinį apskritimą, kurį laikome vienetiniu. Visgi formulės, kurias čia naudosime yra kiek subtilesnės. Išmoksime metodą kaip rasti apskritimo lankų vidurio taškus, bei kaip rasti įbrėžtinio apskritimo centrą. Taip susiesime apibrėžtinį su įbrėžtiniu apskritimu.
+
+\begin{thmnr} Jei $a, b$ ir $c$ priklauso vienetiniam apskritimui, tada:\
+\begin{enumerate}
+\item Egzistuoja $u, v, w$ tokie kad $a=u^2, b=v^2, c=w^2$, o $-uv$, $-vw$, $-wu$ yra $\smile ab, \smile bc, \smile ca$ vidurio taškai, kuriems nepriklauso taškai $c, a, b$ atitinkamai.
+\item Jei i yra $\bigtriangleup$abc įbrėžtinio apskritimo centras, tai $i= - (uv + vw + wu)$.
+\end{enumerate}
+\end{thmnr}
+
+\begin{sprendimas}
+\begin{enumerate}
+\item Neprarasdami bendrumo tarkime, kad $a=e^{i\theta_a}, b=e^{i\theta_b}, c=e^{i\theta_c}$, kur $0 \leq \theta_a < \theta_b < \theta_c < 2\pi$. Tada paimkime $u=e^{i\frac{1}{2}\theta_a}, v=e^{i(\frac{1}{2}\theta_b+\pi)}, w=e^{i\frac{1}{2}\theta_c}$. Nesunku pastebėti, kad $a=u^{2}, b=v^{2}, c=w^{2}$, be to $-uv=e^{i\frac{1}{2}(\theta_a+\theta_b)}, -vw=e^{i\frac{1}{2}(\theta_b+\theta_c)}, -wu=e^{i(\frac{1}{2}(\theta_a+\theta_b)+\pi)}$ ir yra atitinkamų lankų vidurio taškai. Pastebėkime, kad paskutinio nario laipsnyje narys $i\pi$ yra neatsitiktinai.
+\item Pažymėkime $p_C=-uv$. Įrodysime, kad taškas $I$ priklauso pusiaukampinei $P_CC$, analogiškai jis turės priklausyti ir kitoms dviems pusiaukampinėms, todėl $I$ bus jų susikirtimo taškas, kuris ir yra įbrėžtinio apskritimo centras.
+
+Mums reikia įrodyti, kad taškas $i=-(uv+vw+wu)$ priklauso tiesei $P_CC$. Iš teoremos tiesėms, gauname, kad tai yra ekvivalentu $$\frac{c-i}{\overline c - \overline i}=\frac{c-p_C}{\overline {c} - \overline {p_C}}.$$
+Įsistatome reikšmes $i=-(uv+vw+wu), p_C=-uv, c=w^2$, nepamirštame, kad $u, v, w$ visi yra ant vienetinio apskritimo ir įrodome, kad lygybė yra teisinga.
+\end{enumerate}
+\end{sprendimas}
+
+
+
+
+
+
+\begin{pavnr}
+(LMMO 2005)
+
+Apie trikampį $ABC$ apibrėžtas apskritimas. Taškas $M$ yra lanko $AC$ (kuriam nepriklauso viršūnė $B$) vidurio taškas, o $N$ yra lanko $AB$ (kuriam nepriklauso viršūnė $C$) vidurio taškas. Atkarpos $MN$ ir $AB$ kertasi taške $K$. Įbrėžto į trikampį $ABC$ apskritimo centras yra $O$. Įrodykite, kad $KO$ yra lygiagreti kraštinei $AC$. 
+\end{pavnr}
+\begin{sprendimas}
+Tarsime, kad apie trikampį $ABC$ apibrėžtasis apskritimas yra vienetinis. Šiame uždavinyje mums reikia gudriai apsirašyti taškus $M, N$ ir $O$, todėl mes taikome septintą teoremą:
+$$a = x^2,$$
+$$b=y^2,$$
+$$c = z^2,$$
+$$ o = - (xy+xz+yz),$$
+$$m = - xz,$$
+$$ n = - xy.$$
+Kadangi $K$ yra stygų $MN$ ir $AB$ susikirtimo taškas, tai tašką $K$ randame naudodami šeštą teoremą:
+$$k = \frac{ x^2yz(x^2+y^2)+ x^2 y^2 (xy+xz)}{ x^2 yz - x^2 y^2},$$
+$\phantom{a}$ 
+Galiausiai, naudojant teoremą tiesėms, įrodome, kad $KO$ yra statmena $AC$:
+$$\frac{k-o}{\overline k - \overline o}  = - \frac{ x^2 - z^2}{\overline x^2 - \overline z^2},$$
+Suprastinę, gauname, kad abi pusės lygios $x^2 z^2$. Taigi gavome būtent tai, ką reikėjo įrodyti.
+\end{sprendimas}
+
+
+
+
+
+
+
+\begin{pavnr}
+(IMO 2010)
+
+Tegul $I$ yra trikampio $ABC$ pusiaukampinių, susikirtimo taškas, o $\Gamma$ – apie trikampį $ABC$ apibrėžtas apskritimas. Tiesė $AI$ kerta $\Gamma$ taške $D$, kur $D\ne A$. Taškas $E$ priklauso apskritimo $\Gamma$ lankui $\smile BDC$, o taškas $F$ – atkarpai $BC$. Be to, $\angle BAF = \angle CAE < \frac{1}{2}\angle BAC$. Taškas $G$ yra atkarpos $IF$ vidurio taškas. Įrodykite, kad tiesių $DG$ ir $EI$ susikirtimo taškas priklauso apskritimui $\Gamma$.
+\end{pavnr}
+
+\begin{sprendimas}
+
+Tegu $\Gamma$ yra vienetinis apskritimas kompleksinėje plokštumoje. Naudojamės septinta teorema, tada $a=u^2, b=v^2, c=w^2$ ir $i = -(uv+vw+wu).$
+
+Tegu $AF$ kerta $\Gamma$ taške $H\ne A$. Tada $\angle BAH =\angle EAC =\alpha$, pažymime $\phi=e^{i\alpha}$. Tada $\frac{h-a}{|h-a|}\phi=\frac{b-a}{|b-a|}.$ Pakėlę kvadratu ir pasinaudoję šeštąja teorema gauname $h=\frac{v^2}{\phi^2}$. Analogiškai randame $e=\phi^2w^2$.
+
+Tegu $EI$ kerta $\Gamma$ taške $X \ne E$. Iš teoremos tiesėms gauname $\frac{e-x}{\overline{e}-\overline{x}}=\frac{e-i}{\overline{e}-\overline{i}}$ ir kadangi $x\overline{x}=1$, tai 
+$$x=-uvw\frac{w^2\phi ^2 +uv+vw+wu}{uvw +w^2\phi ^2(u+v+w)}.$$
+
+Prisiminę šeštąją teoremą, randame 
+$$f=\frac{v^2w^2(u^2 + \frac{v^2}{\phi ^2}) - \frac{u^2v^2}{\phi ^2}(v^2+w^2)}{v^2w^2 - \frac{u^2v^2}{\phi ^2}}=\frac{w^2(u^2\phi^2 + v^2) - u^2(v^2+w^2)}{w^2\phi^2 - u^2}.$$
+
+Taškas $d=-vw$ pagal septintąją teoremą, nes $AI$ yra trikampio $ABC$ pusiaukampinė.
+
+Galiausiai $g=\frac{1}{2}(f+i)$ ir pagal teoremą tiesėms įrodome, kad $d, g$ ir $x$ priklauso vienai tiesei.
+\end{sprendimas}
+
+\textit {Pastaba.} Nemažai šio uždavinio skaičiavimų yra gana komplikuoti, bet gudriai apsirašydami taškus, išvengėme dar baisesnių išraiškų, o šios dar pasirodė įveikiamos. Tokiuose uždaviniuose labai svarbu būti atidžiam ir nedaryti klaidų atliekant reiškinių pertvarkymus.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{thmnr} Duotas trikampis $ABC$, kurio įbrėžtinis apskritimas yra vienetinis ir jis liečia jo kraštines $BC, CA, AB$ taškuose $P, Q, R,$ atitinkamai, tada:
+\begin{enumerate}
+\item Galioja $a=\frac{2qr}{q+r}$, $b=\frac{2rp}{r+p}$, $c=\frac{2pq}{p+q}$.
+\item Jei $H$ yra $\bigtriangleup ABC$ aukštinių susikirtimo taškas, tai
+$$h=\frac{2(p^2q^2 + q^2r^2 + r^2p^2 + pqr(p + q+ r))}{(p+q)(q+r)(r+p)}.$$
+\item Jei $O$ yra apibrėžtinio apie  $\bigtriangleup ABC$ apskritimo centras, tai
+$$o=\frac{2pqr(p+q+r)}{(p+q)(q+r)(r+p)}.$$
+\end{enumerate}
+\end{thmnr}
+
+\begin{sprendimas}
+\begin{enumerate}
+\item Ši dalis yra analogiška šeštos teoremos daliai.
+\item Pastebėkime, kad $AH$ yra lygiagreti $IP$, nes jos abi yra statmenos $BC$. Vadinasi $\frac{a-h}{\overline a-\overline h}=\frac{i-p}{\overline i-\overline p}.$ Naudojamės $i=0$ ir suprastinę gauname $$\overline {h}= \frac{2}{q+r} + \frac{1}{p^2}(h-\frac{2qr}{q+r}).$$ Analogiškai $BH$ lygiagreti $IQ$, todėl $$\overline {h}= \frac{2}{r+p} + \frac{1}{q^2}(h-\frac{2rp}{r+p}).$$
+Sulyginę ir suprastinę gauname $$h=\frac{2(p^2q^2 + q^2r^2 + r^2p^2 + pqr(p + q+ r))}{(p+q)(q+r)(r+p)}.$$
+\item Naudojamės formule $h+2o=a+b+c$, kuri ekvivalenti $o=\frac{a+b+c-h}{2},$ įsistatome žinomas $a, b, c, h$ reikšmes ir suprastinę gauname
+$$o=\frac{2pqr(p+q+r)}{(p+q)(q+r)(r+p)}.$$
+\end{enumerate}
+\end{sprendimas}
+
+
+
+
+
+
+\begin{pavnr}
+(APMO 2005)
+
+Tegu $ABC$ smailusis trikampis, kurio $\angle BAC = \frac{\pi}{3}$ ir $AB>AC$. Tegu $I$ įbrėžtinio apskritimo centras, o $H$ - aukštinių susikirtimo taškas. Įrodykite, kad $2\angle AHI=3\angle ABC$.
+\end{pavnr}
+
+\begin{sprendimas}
+Tegu įbrėžtinis į trikampį $ABC$ apskritimas yra vienetinis, kuris liečia kraštines $AB, BC, CA$ taškuose $R, P, Q$. Pažymėkime: $\angle AHI = \alpha, \angle ABC = \beta$ ir $\omega = e^{i\alpha}, \phi = e^{i\beta}$.
+
+Tada $i=0$, $a=\frac{2rq}{r+q}$, $b=\frac{2rp}{r+p}$, o $\angle RIQ=\frac{2}{3}\pi$, ką gauname iš keturkampio $RIQA$ kampų. Gauname, kad $e^{i\frac{2}{3}\pi}=\frac{r}{q}$, todėl $\Big(\frac{r}{q}\Big)^3=1$. Išskaidę $r^3-q^3=0$ ir pasinaudoję $r\ne q$ gauname
+\begin{equation}
+r^2 + rq + q^2 = 0. \tag{$*$}
+\end{equation}
+Ši lygybė bus būdas, kaip mes išnaudosime sąlygą, kad $\angle BAC = \frac{\pi}{3}$.
+Naudodami aštuntą teoremą ir $(*)$ gauname:
+$$h=\frac{2(p^2(q^2 + r^2) + q^2r^2  + pqr(p + q+ r))}{(p+q)(q+r)(r+p)}$$
+$$=\frac{2(p^2(-rq) + q^2r^2  + pqr(p + q+ r))}{(p+q)(q+r)(r+p)}=\frac{2qr(pq +qr+rp)}{(p+q)(q+r)(r+p)}.$$
+Žinome, kad $\omega$ tenkina:
+$$\frac{a-h}{\overline{a}-\overline{h}}\omega^2=\frac{i-h}{\overline{i}-\overline{h}} \Leftrightarrow \omega^2=\frac{qr}{p^3}\frac{(pq +qr+rp)}{(p+q+r)}.$$
+Naudodamiesi, kad liestinių ilgiai yra lygūs, gauname, kad $\phi$ tenkina:
+$$\frac{p-b}{|p-b|}\phi=\frac{r-b}{|r-b|} \Rightarrow \phi^3=-\frac{r^3}{p^3}.$$
+Pasinaudoję $(*)$ įrodome, kad $\phi^3=\omega^2.$ Iš to seka, kad
+$$3\beta=2\alpha + 2\pi k \text{, kažkokiam } k\in\mathbb{Z}.$$
+Beliko išnagrinėti kelis atvejus. Jeigu $k>0$, tai $\beta>\frac{2}{3}\pi$, kas nėra įmanoma. Jei $k<0$, tai $\alpha > \pi$ (kas reiškia, kad kampas, kurį matavome yra išorinis), todėl šiuo atveju taškai $B$ ir $I$ bus skirtingose aukštinės $AH$ pusėse. O būtent šiuo atveju $AB<AC$ (tai galime pamatyti, pvz., pastebėdami, kad $\angle AHI < \frac{\pi}{6}$, todėl $\beta > \frac{\pi}{3}$ ir iš to gaunam, kad $\angle ABC > \angle ACB$), kas nėra teisinga. Todėl $k=0$ ir $3\beta=2\alpha$.
+\end{sprendimas}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Trikampio plotas}
+
+Šiame skyriuje išmoksime trikampio ploto formulę ir išspręsime kelis su tuo susijusius uždavinius.
+
+\begin{thmnr} 
+Duota, kad
+$S=\frac{i}{4}(a\overline{b} +b\overline{c}+c\overline{a} - b\overline{a} -c\overline{b}-a\overline{c}).$ Kai viršūnės $A, B, C$ išdėstytos prieš laikrodžio rodyklę, $S$ lygus trikampio ABC plotui. Kitu atveju, $-S$ lygus trikampio $ABC$ plotui.
+\end{thmnr}
+
+\begin{sprendimas}
+Nagrinėkime atvejį, kai viršūnės $A, B, C$ išdėstytos prieš laikrodžio rodyklę, kitas atvejis įrodomas analogiškai.
+
+Tegu trikampio $ABC$ aukštinė yra $BD$. Tuomet $c-a=|c-a|e^{i\theta}$, be to $\angle BDC = \frac {\pi}{2},$ todėl $(b-d)i=|b-d|e^{i\theta}$. Gauname, kad $\frac{1}{2}\overline{(c-a)} (b-d)i=\frac{1}{2}|c-a||b-d|=S.$
+
+Naudodamiesi tuo, kad taškas $D$ priklauso atkarpai $AC$, bei tuo, kad $BD$ yra statmena $AC$, randame tašką $D$:
+$$ d =\frac {1}{2}(a+b + (\bar{b}-\bar{a}) \frac{a-c}{ \bar{a}-\bar{c}}).$$
+Įsistatę gautąją $d$ israišką į $S=\frac{1}{2}\overline{(c-a)} (b-d)i,$ bei atlikę prastinimo veiksmus, gauname, kad
+$$S= \frac {i}{4}(a\bar{b}+ b \bar{c} + c \bar{a} - b\bar{a} - c \bar{b} - a \bar{c}).$$
+\end{sprendimas}
+
+
+
+
+
+\begin{pavnr}
+(LMMO 2008)
+
+Apie smailųjį trikampį $ABC$ apibrėžtas apskritimas. Atkarpa $BD$ yra to
+apskritimo skersmuo. Iš viršūnės $A$ nubrėžta aukštinė kerta apskritimą
+taške $E$. Įrodykite, kad keturkampio $BECD$ plotas yra lygus trikampio
+$ABC$ plotui.
+\end{pavnr}
+\begin{sprendimas}
+Tegu apie $ABC$ apibrėžtas apskritimas bus vienetinis. Tada gauname, kad $d = -b$ bei iš šeštos teoremos
+ $$ e= -\frac {bc}{a}= -bc \overline{a}.$$
+Liko, naudojant plotų teoremą, įrodyti, kas prašoma.
+
+$$\frac{4}{i}S_{BEC}=b\overline{e}+e\overline{c}+c\overline{b}-\overline{b}e-\overline{e}c-\overline{c}b,$$
+
+$$\frac{4}{i}S_{BCD}=b\overline{c}+c\overline{d}+d\overline{b}-\overline{b}c-\overline{c}d-\overline{d}b.$$
+Įsistatome $d$ ir $e$ reikšmes ir gauname, ką ir reikėjo įrodyti
+$$ \frac{4}{i}S_{BECD}=\frac{4}{i}(S_{BEC}+S_{BCD})=   
+a\bar b + b \bar c + c \bar a - \bar a b - \bar b c - \bar c a = \frac{4}{i}S_{ABC}.$$
+\end{sprendimas}
+
+\begin{pavnr}
+(IMO 2007)
+
+Trikampio $ABC$ kampo $BCA$ pusiaukampinė kerta apibrėžtą apie $ABC$ apskritimą kitame taške $R$. Tarkime, kad $K$ yra atkarpos $BC$ vidurio taškas, o $L$ yra atkarpos $AC$ vidurio taškas. Tiesė, kuri eina per tašką $K$ ir yra statmena atkarpai $BC$, kerta tiesę $CR$ taške $P$, o tiesė, kuri eina per tašką $L$ ir yra statmena atkarpai $AC$, kerta tiesę $CR$ taške $Q$. Įrodykite, kad trikampių $RPK$ ir $RQL$ plotai yra lygūs.
+\end{pavnr}
+\begin{sprendimas}
+
+Naudosimės septinta teorema: tarsime, kad $a=u^2, b=v^2$ ir $c=w^2$. Tada $r=-uv$, o $l=\frac{u^2+w^2}{2}$. Pasinaudoję tuo, kad $Q$ priklauso stygai $RC$ ir tuo, kad $QL$ statmena $AC$, randame $q=\frac{u(w^2 - uv)}{u-v}$. Pažymime: S - trikampio $RQL$ plotas, o $t=(r\overline{q} +q\overline{l}+l\overline{r})$, tada $S=\frac{i}{4}(t-\overline{t})$. 
+Randame
+$$t=\frac{w^4(2v-u) +w^2(2u^2v-u^3-3uv^2) +2u^2v^3 - u^3v^2}{2uvw^2(u-v)},$$
+$$-\overline{t}=\frac{w^4(2u-v) +w^2(2uv^2-v^3-3u^2v) +2u^3v^2 - u^2v^3}{2uvw^2(u-v)}.$$
+Gauname
+$$S=\frac{i}{4}(t-\overline{t})=\frac{i}{4}\frac{(w^4(u+v)-w^2(u^3+v^3+u^2v+v^2u)+u^2v^3+v^3u^2)}{2uvw^2(u-v)}.$$
+
+Matome, kad sukeitus ploto išraiškoje $u$ ir $v$ vietomis, gausime $-S$. Be to, žinome, kad sukeitus trikampio viršūnių orientaciją, ploto formulėje turime prirašyti minuso ženklą. Todėl iš trikampių simetrijos, $\triangle RPK$ plotas bus lygus S.
+\end{sprendimas}
+
+
 
 
 \end{document}
