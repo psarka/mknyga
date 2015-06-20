@@ -1,192 +1,703 @@
 \documentclass[11pt,a4paper,twoside]{book}
 
-\usepackage[utf8x]{inputenc}
-\usepackage[L7x]{fontenc}
-\usepackage[lithuanian]{babel}
-\usepackage[pdftex]{graphicx}
-\usepackage{lmodern}
-\usepackage{amssymb, amsmath, amsthm}
-
-\def\leq{\leqslant}
-\def\geq{\geqslant}
-\def\C{\mathbb C}
-\def\F{\mathbb F}
-\def\N{\mathbb N}
-\def\R{\mathbb R}
-\def\Q{\mathbb Q}
-\def\Z{\mathbb Z}
-\def\eps{\varepsilon}
-\def\ro{\varrho}
-
-
-\DeclareMathOperator{\dbd}{dbd}
-\DeclareMathOperator{\mbk}{mbk}
-\DeclareMathOperator{\im}{Im}
-\DeclareMathOperator{\re}{Re}
-\DeclareMathOperator{\Arg}{Arg}
-
-
-\newenvironment{sprendimas}{\noindent \textit{Sprendimas.}}{\hfill $\triangle$}
-\newcounter{foo}[subsection]
-\newtheorem*{teig}{Teiginys}
-\newtheorem*{thm}{Teorema}
-\newtheorem*{isv}{Išvada}
-\newtheorem*{pav}{Pavyzdys}
-\newtheorem{teignr}{Teiginys}
-\newtheorem{thmnr}{Teorema}
-\newtheorem{isvnr}{Išvada}
-\newtheorem{pavnr}[foo]{Pavyzdys}
-\theoremstyle{definition} \newtheorem*{api}{Apibrėžimas}
-\theoremstyle{remark} \newtheorem*{pastaba}{Pastaba}
+\usepackage[BW]{optional}
+\usepackage{esvect}
+\usepackage{knyga}
 
 \begin{document}
 
-\chapter {Kompleksinių skaičių geometrijoje pagrindai}
+\chapter {Kompleksinių skaičių geometrija}
 
-\subsection*{Kompleksiniai skaičiai geometrijoje}
 
 Geometrija kaip olimpiadinės matematikos sritis, tikriausiai turi daugiausiai skirtingų sprendimo metodų. Geometriniai uždaviniai nebūtinai turi daugiausia skirtingų sprendimų, bet metodų, kaip spręsti pasirinktą uždavinį, yra apstu. 
 
-Pirmasis ir standartinis būdas yra naudotis Euklidinės geometrijos teoremomis. Šis būdas yra turbūt vienas paprasčiausių - žvelgiant iš tos pusės, kad mokant kelias pagrindines trikampių panašumų ir apskritimų teoremas, galima išspręsti daugumą uždavinių. Taip pat, šis sprendimo būdas suteikia gilesnį uždavinio supratimą, nes uždavinio mintis nepasislepia algebrinėse išraiškose ir reiškinių pertvarkymuose. Bet iš kitos pusės, sprendžiant sudėtingesnius uždavinius, dažnai reikia labai daug patirties ir geros intuicijos, kuri padėtų pasipildyti brėžinį reikiamais taškais ar tiesėmis, kurie vestų iki sprendimo. Įgyti tokią intuiciją nėra lengva, todėl yra daug kitų būdų, kurie gali palengvinti spręsti geometrinius uždavinius.
+Klasikinis būdas yra naudotis Euklidinės geometrijos teoremomis. Šis būdas yra turbūt vienas paprasčiausių - žvelgiant iš tos pusės, kad mokant kelias pagrindines trikampių panašumų ir apskritimų teoremas, galima išspręsti daugumą uždavinių. Taip pat, šis sprendimo būdas suteikia gilesnį uždavinio supratimą, nes uždavinio mintis nepasislepia algebrinėse išraiškose ir reiškinių pertvarkymuose. Bet iš kitos pusės, sprendžiant sudėtingesnius uždavinius, dažnai reikia labai daug patirties ir geros intuicijos, kuri padėtų pasipildyti brėžinį reikiamais taškais ar tiesėmis, kurie vestų iki sprendimo. Įgyti tokią intuiciją nėra lengva, todėl yra daug kitų būdų, kurie gali palengvinti spręsti geometrinius uždavinius.
 
 Vienas alternatyvių būdų yra naudotis kompleksiniais skaičiais. Šis metodas reikalauja nemenko pasiruošimo - reikia mokėti ne tik laisvai daryti pertvarkymus su kompleksiniais skaičiais, suprasti geometrines šių operacijų interpretacijas, bet ir išmokti tvarkyti kompleksinių skaičių išraiškas taip, kad jos būtų kuo paprastesnės ir algebriniai reiškiniai netaptų nesuprastinami. Bet tinkamai pasiruošus, daug sudėtingų geometrinių uždavinių pasidaro įveikiami. Perrašius uždavinį algebrinėmis išraiškomis, užtenka jas tiesiog išprastinti ir uždavinys bus išspręstas. 
 
-Kompleksinius skaičius dažniausiai žymėsime mažosiomis raidėmis $a, b, c$, o atkarpas ir figūras - didžiosiomis, pvz., atkarpa $AB$, trikampis $ABC$, o juos atitiks kompleksiniai skaičiai $a, b, c$. Skaičių koordinates kompleksinėje plokštumoje žymėsime $(x, y)=(Re (a), Im (a))$, kur $a = x + yi \in \mathbb{C}$ arba  $(r, \theta)=(|a|, Arg(a))$, kur $a = re^{i\theta} \in \mathbb{C}$. 
+Kompleksinių skaičių geometrijos skyrių pradėsime nuo pagrindinių geometrijos
+sampratų, tokių kaip lygiagretumas, kampų lygumas ar trikampių panašumas,
+perrašymo kompleksinių skaičių kalba. Tolimesniuose skyreliuose supažindinsime
+su tiesės lygtimi, plotų skaičiavimu ir apskritimo geometrija -- stipriausia
+kompleksinių skaičių geometrijos puse.
 
-Spręsdami uždavinius retai naudosime taškų koordinačių išraiškas ir reikėtų to vengti, bet bendram suvokimui būtina žinoti kaip atliekamos šios operacijos. Primename, kad $Re (a)$ yra realioji skaičiaus $a$ dalis, žymima ant realiosios ašies, $Im (a)$ - menamoji dalis (angl. imaginary), žymima ant menamosios ašies, $|a|$ yra $a$ modulis - atstumas nuo koordinačių pradžios taško $0$ iki $a$ ir $Arg (a)$ yra kampas kurį atkarpa $AO$ sudaro su $Re$ ašimi, sukant ašį prieš laikrodžio rodyklę, o taškas $O$ yra koordinačių pradžios taškas.
+\section{Skaičiai, taškai ir vektoriai}
 
-PAVEIKSLIUKAS 0
+Kompleksinė geometrija prasideda nuo kompleksinių skaičių plokštumos. Kiekvienas
+kompleksinis skaičius turi realiąją ir menamąją dalis, kurias laikydami
+įprastinėmis $x$ ir $y$ koordinatėmis galime jį atidėti koordinačių plokštumoje.
+Ir atvirkščiai, turėdami taškus plokštumoje, galime (“uždėję“ ant jos
+koordinates) jiems priskirti kompleksinius skaičius. Šiame skyriuje taškus, kaip
+įprasta, žymėsime didžiosiomis raidėmis (pvz. $A$, $B$, $C$), o juos
+atitinkančius kompleksinius skaičius mažosiomis (atitinkamai $a$, $b$, $c$).
+Kompleksinės plokštumos pradžią žymėsime $O$ ir ją atitiks kompleksinis skaičius
+$0 + 0i = 0$.
 
-Autoriai tiki, kad aukštesnio lygio konkursuose, kaip LMMO ir atrankos į tarptautines olimpiadas, be įrodymų galima naudoti visas šioje knygos dalyje pateikiamas teoremas.
+Kompleksinio skaičiaus $a = x + iy$ padėtį plokštumoje galima apibūdinti ne tik
+nurodant jo realiąją ir menamąją dalis ($x$ ir $y$, arba $\Re(a)$ ir $\Im(a)$),
+bet taip ir nurodant jo atstumą nuo koordinačių pradžios bei kampą, kurį atkarpa
+$OA$ sudaro su realiąja ašimi. Šie du dydžiai atitinka kompleksinio skaičiaus
+modulį $|a|$ ir argumentą $\Arg(a)$.  Pažymėję juos atitinkamai $r$ ir $\theta$,
+ir naudodamiesi Oilerio lygybe, kompleksinį skaičių $a$ galime užrašyti dviem
+būdais:
 
+$$
+a = x + iy = r e^{i\theta}.
+$$
 
+\begin{figure}[h]
+  \centering
+  \begin{asy}
+    size(300);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
 
+    pair A=(75,50);
+    pair I=(0,-20);
+    pair II=(-40,20);
+    pair P=1.5*A;
+    pair O=origin;
 
+    add(anglem((1,0),O,A,300,red,0));
 
-\subsection*{Sudėtis ir daugyba iš realiojo skaičiaus}
+    draw(A--(A.x,0),dotted);
+    draw(O--(A.x,0));
+    draw(A--(0,A.y),dotted);
+    draw(O--A);
 
-Iš vektorinės geometrijos prisiminkime, kad sudėdami vektorius sudedame jų atitinkamas koordinates. Jeigu turime vektorius $\overrightarrow{v_1}=(x_1, y_1)$ ir $\overrightarrow{v_2}=(x_2, y_2)$, tai jų suma bus $\overrightarrow{v_1}+\overrightarrow{v_2}=(x_1+x_2, y_1+y_2)$. Jeigu dar turime realųjį skaičių $r \in \mathbb{R}$, tai daugindami jį iš vektoriaus dauginame jį su visomis koordinatėmis $r  \overrightarrow{v_1}=(r  x_1, r  x_2)$.
+    dot(A,blue);
+    dot(P,white);
+    dot(I);
+    dot(II);
 
-Lygiai taip pat sudedame kompleksinius skaičius ir randame kompleksinio ir realaus skaičiaus sandaugą. Įsivaizduokime kiekvieną Euklidinės plokštumos tašką kaip vektorių, kurio pradžia yra $(0, 0)$. Kiekvieną kompleksinį skaičių $a = x + yi$ galime įsivaizduoti kaip vektorių $(x, y)$, kurio pradžios taškas yra $(0, 0)$ ir kuris yra atvaizduotas kompleksinėje plokštumoje. Taip mes gauname analogiją tarp kompleksinių skaičių ir vektorių. Todėl vektorių sudėties ir sandaugos iš realiojo skaičiaus geometrines interpretacijas galime taikyti ir kompleksiniams skaičiams.
+    label("$a$",A,NE,blue);
+    label("$\theta$",O,2*(3,1),blue);
+    label("$r$",A/2,N,blue);
+    label("$O$",O,SW,blue);
+    label("$x$",(A.x,0),S,blue);
+    label("$y$",(0,A.y),W,blue);
+    label("$-i$",I,W,blue);
+    label("$-2+i$",II,NW,blue);
+  \end{asy}
+  \caption{Kompleksinėje plokštumoje pažymėti trys kompleksiniai skaičiai:
+    $-i$, $-2+i$ ir $a=x+yi=re^{i\theta}$.}
+\end{figure}
 
+Lygiai taip pat, kaip suformulavome kompleksinių skaičių ir taškų atitikmenį,
+galima suformuluoti ir kompleksinių skaičių bei vektorių atitikmenį:
+kompleksinio skaičiaus $a = x+yi$ realiąją ir menamąją dalis $x$ ir $y$ galime
+laikyti vektoriaus koordinatėmis ir sakyti, kad kompleksinis skaičius $x + yi$ atitinka
+vektorių $(x', y')$, jei $x=x'$ ir $y=y'$.
 
-Geometriškai dviejų kompleksinių skaičių sumą randame naudodami lygiagretainio taisyklę, o sudauginę realųjį skaičių su kompleksiniu pakeičiame tik kompleksinio skaičiaus nuotolį nuo koordinačių pradžios taško, išlaikydami kryptį (arba pakeisdami ją į priešingą). 
+\begin{figure}[h]
+  \centering
+  \begin{asy}
+    size(300);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
 
+    pair A=(60,20);
+    pair B=(20,40);
+    pair O=origin;
+    pair II=(-40,20);
 
+    draw(A--B,Arrow);
+    draw(A*1.2--B*1.2,invisible);
 
+    dot(A,blue);
+    dot(B,blue);
+    dot(II);
 
+    label("$-2+i$",II,NW,blue);
+    label("$A$",A,N,blue);
+    label("$B$",B,N,blue);
+    label("$O$",O,SW,blue);
+  \end{asy}
+  \caption{Kompleksinis skaičius $-2+i$ atitinka vektorių $\protect\vv{AB}=(-2,1)$,
+einantį iš taško $A(3,1)$ į tašką $B(1,2)$.}
+\end{figure}
 
+Šie kompleksinių skaičių bei taškų ir vektorių atitikmenys leidžia geometrinius
+sąryšius išreikšti naudojantis kompleksinių skaičių aritmetika. Pagrindinės
+artimetinės operacijos -- sudėtis, daugyba ir kompleksinis jungtinumas -- turi
+aiškius geometrinius atitikmenis ir sudaro kompleksinių skaičių geometrijos
+pagrindą.
 
-PAVEIKSLIUKAS1
+\subsection{Kompleksinių skaičių sudėtis kaip postūmis}
 
-\begin{thmnr}
-Turime trikampį $ABC$, o kraštinių vidurio taškai $A_1, B_1, C_1$ yra atitinkamai prieš viršūnes $A, B, C$. Tada: 
+Kompleksinių skaičių sudėtis yra ekvivalenti vektorių sudėčiai. Jei taškus $A$
+ir $B$ atitinka kompleksiniai skaičiai $a$ ir $b$, tai jų sumą $a + b 
+= s$ atitiks taškas $S$ (ir tuo pačiu vektorius $\vv{OS}$), tenkinantis
+$$
+\vv{OA} + \vv{OB} = \vv{OS}.
+$$
+Lygiai tas pats galioja ir skirtumui: kompleksinių skaičių skirtumą $a - b =
+d$ atitiks taškas $D$, tenkinantis $\vv{OA} - \vv{OB} = \vv{OD}$.
+Pastebėkime, kad vektorius $\vv{OA} - \vv{OB}$ yra lygus vektoriui
+$\vv{BA}$, tad
 
-$$a_1 = \frac{b+c}{2}, b_1 = \frac{c+a}{2}, c_1 = \frac{a+b}{2}.$$
+$$
+\text{skirtumas } a - b \text{ atitinka vektorių }
+\vv{BA}.
+$$
 
-\end{thmnr}
+\begin{figure}[h]
+  \centering
+  \begin{asy}
+    size(200);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
+
+    pair A=(60,20);
+    pair B=(20,40);
+    pair O=origin;
+
+    draw(O--A,Arrow);
+    draw(O--B,Arrow);
+    draw(O--A+B,dotted,Arrow);
+    draw(O--A-B,dotted,Arrow);
+    draw(B--A,Arrow);
+    draw((A+B)*1.2,invisible);
+
+    dot(A,blue);
+    dot(B,blue);
+    dot(A+B,blue);
+    dot(A-B,blue);
+
+    label("$A$",A,NE,blue);
+    label("$B$",B,NE,blue);
+    label("$a+b$",A+B,NE,blue);
+    label("$a-b$",A-B,NE,blue);
+    label("$O$",O,SW,blue);
+  \end{asy}
+  \caption{}
+\end{figure}
+
+Naudodamiesi šia kompleksinių skaičių ir vektorių atitikmenimi, galime
+rasti atkarpos vidurį, bei trikampio pusiaukraštinių susikirtimo tašką:
+
+\begin{teig}
+  Atkarpos $AB$ vidurio tašką atitinka kompleksinis skaičius $\frac{a+b}{2}$.
+\end{teig}
+
+\begin{proof}
+  Atkarpos vidurio tašką rasime prie vektoriaus $\vv{OA}$ pridėję pusę
+  vektoriaus $\vv{AB}$, ką atitiks suma
+  $$
+  a + \frac{b - a}{2} = \frac{a + b}{2}.
+  $$
+\end{proof}
+
+\begin{teig}
+  Trikampio $ABC$ pusiaukraštinės susikirta viename taške, kurį atitinka
+  kompleksinis skaičius $\frac{a + b + c}{3}$. Jis dalija kiekvieną iš
+  pusiaukraštinių santykiu $2:1$.
+\end{teig}
+
+\begin{proof}
+  Imkime tašką $M$, kurį atitinka kompleksinis skaičius $\frac{a + b + c}{3}$.
+  Parodysime, kad šis taškas priklauso pusiaukraštinei $AM_{A}$ ir dalija ją
+  santykiu $2:1$. Tam pakanka parodyti, kad 
+  $$
+  \vv{AM} = 2\vv{MM_{A}},
+  $$
+  arba, perrašius kompleksiniais skaičiais,
+  $$
+  \frac{a + b + c}{3} - a = 2\left(\frac{b+c}{2} - \frac{a + b + c}{3}\right).
+  $$
+  Ši lygybė akivaizdžiai teisinga, ir po tokią pačią galima gauti ir likusioms
+  dviem pusiaukraštinėms.
+\end{proof}
+
+Panašiai į kompleksinių skaičių kalbą iš vektorių geometrijos galima perkelti ir
+daugiau teiginių. Pavyzdžiui:
+
+%\begin{teig}
+%  Atkarpos $AB$ ir $CD$ yra lygiagrečios, jei egistuoja toks realusis skaičius
+%  $k$, kad
+%  $$
+%  b-a = k(d-c).
+%  $$
+%\end{teig}
+%
+%\begin{teig}
+%  Atkarpos $AB$ ir $CD$ yra vienodo ilgio, jei
+%  $$
+%  |b-a| = |d-c|.
+%  $$
+%\end{teig}
+
+\begin{thm}[Oilerio tiesės teorema]
+  Trikampio $ABC$ pusiaukraštinių
+  susikirtimo taškas $M$ priklauso atkarpai $OH$, kur $O$ apibrėžtinio
+  apskritimo centras,  ir $H$ aukštinių susikirtimo taškas, bei dalija ją
+  santykiu $OM:MH = 1:2$, t.y.
+  $$
+  h  + 2o = a + b + c.
+  $$
+\end{thm}
+
 \begin{sprendimas}
-Pastebime, kad $a_1$ galime rasti prie $b$ pridėję $\frac{1}{2}$ vektoriaus iš viršūnės $b$ į viršūnę $c$. Toks vektorius iš koordinačių pradžios taško bus $c-b$, todėl $a_1 = b + \frac{c-b}{2}=\frac{b+c}{2}$. Taškus $b_1, c_1$ randame analogiškai.
+  Pirma įsitikinkime, kad kompleksinių skaičių lygybė tikrai nusako norimą trijų
+  taškų priklausimą vienai tiesei bei atkarpų ilgių santykį. Tam pakanka
+  prisiminti, kad pusiaukraštinių susikirtimo tašką atitinka kompleksinis
+  skaičius $\frac{a+b+c}{3}$, ir perrašyti lygybę kaip
+  $$
+  h - \frac{a+b+c}{3} = 2\left(\frac{a+b+c}{3} - o\right).
+  $$
+  Lieka norimą lygybę įrodyti. Tą galima padaryti elegantiškai, parodant, kad
+  taškas atitinkantis $a+b+c - 2o$ priklauso visoms trims trikampio aukštinėms.
+  Imkime vektorių, einantį į šį tašką iš viršūnės $A$. Jį atitiks kompleksinis
+  skaičius 
+  $$
+  a+b+c - 2o - a = (b-o) + (c-o),
+  $$
+  tad jis bus lygus vektorių $\vv{OB}$ ir $\vv{OC}$ sumai. O kandangi $O$ yra
+  apibrėžtinio apskirtimo centras, tai ši vektorių suma bus statmena vektoriui
+  $\vv{BC}$. Vadinasi taškas atitinkantis $a+b+c - 2o$ priklauso aukštinei
+  $AA_H$, ir analogiškai aukštinėms $BB_H$ ir $CC_H$.
+  \begin{figure}[h]
+    \begin{center}
+      \begin{asy}
+	size(300);
+
+	pair A = (35,60); 
+	pair B = (100,0);
+	pair C = (0,0);
+	pair O = circumcenter(A,B,C);
+	pair H = A + B + C - 2*O;
+	pair X = (C + B - 2*O) + O;
+
+    	add(rightanglem(O,(B+C)/2,B,125));
+
+	dot(O,blue);
+	dot(H,blue);
+
+	draw(A--B--C--cycle);
+	draw(O--C, Arrow);
+	draw(O--B, Arrow);
+	draw(A--H, dotted, Arrow);
+	draw(O--X, Arrow);
+
+	add(pathticks(O--B,2,0.5,0,125,red)); 
+	add(pathticks(O--C,2,0.5,0,125,red)); 
+
+	label("$A$",A,N,blue);
+	label("$B$",B,E,blue);
+	label("$C$",C,W,blue);
+	label("$O$",O,N,blue);
+	label("$a+b+c-2o$",H,S,blue);
+	label("$\overrightarrow{OC} + \overrightarrow{OB}$",2*X/3+O/3,2*E,blue);
+      \end{asy}
+    \end{center}
+  \end{figure}
 \end{sprendimas}
 
-\begin{thmnr}
-Turime trikampį $ABC$, kurio pusiaukraštinių susikirtimo taškas - $T$. Tada:
-$t = \frac{a+b+c}{3}$.
-\end{thmnr}
+
+\subsection{Kompleksinių skaičių daugyba kaip posūkis}
+
+Priešingai nei kompleksinių skaičių sudėtis ir atimtis, daugybos ir dalybos
+geometrinės interpretacijos tiesioginės atitikties vektorių geometrijoje neturi.
+Dėka jų, naudojantis kompleksiniais skaičiais galima aprašyti kur kas
+sudėtingesnius sąryšius.
+
+Tegu $a=r_a e^{i\theta_a}$ ir $b=r_b e^{i\theta_b}$ du kompleksiniai skaičiai,
+išreikšti per modulį ir argumentą. Šios išraiškos labai patogios norint juos
+sudauginti:
+$$
+ab = r_a r_b e^{i(\theta_a + \theta_b)}.
+$$
+Iš šios lygybės matome, kad sandaugos $ab$ modulis lygus $a$ ir $b$ modulių
+sandaugai, o argumentas lygus argumentų sumai. Kitaip tariant, daugybą iš
+kompleksinio skaičiaus atitinka posūkis ir pailgėjimas (ar patrumpėjimas).
+Posūkis dažnai bus gerokai svarbesnis, tad dažnai dauginsime iš kompleksinio
+skaičiaus, kurio modulis lygus vienetui. Pavyzdžiui daugybą iš $i = e^{i\pi/2}$
+atitinka posūkis stačiu kampu (aplink koordinačių pradžią, prieš laikrodžio
+rodyklę):
+
+\begin{figure}[h]
+  \centering
+  \begin{asy}
+    size(200);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
+
+    pair O=origin;
+    pair A=rotate(45,O)*(75,0);
+    pair B=A*(0,1);
+    pair C=rotate(-30, O)*A/2;
+
+    add(rightanglem(A,O,B,200));
+    add(anglem(C,O,A,300,red,0));
+
+    draw(O--A);
+    draw(O--B);
+    draw(O--C);
+
+    dot(A,blue);
+    dot(B,blue);
+    dot(C,blue);
+    dot(1.2*C,invisible);
+
+    label("$a$",A,NE,blue);
+    label("$a\cdot \frac{1}{2}e^{-i\frac{\pi}{6}}$",C,NE,blue);
+    label("$a\cdot i$",B,N,blue);
+    label("$O$",O,SW,blue);
+    label("$\frac{\pi}{6}$",O,(6,3.2),blue);
+  \end{asy}
+  \caption{}
+\end{figure}
+
+Neretai norint aprašyti geometrinį brėžinį reikia ne posūkio aplik koordinačių
+pradžią, o posūkio aplink kurį nors kitą tašką. Kiek pamąsčius, tą padaryti
+nesudėtinga.
+
+\begin{pav}
+  Kvadrato $ABCD$ viršūnės išvardintos prieš laikrodžio rodyklę. Jo viršūnes $C$
+  ir $D$ atitinkančius kompleksinius skaičius $c$ ir $d$ išreikškite per $a$ ir
+  $b$.
+\end{pav}
+
 \begin{sprendimas}
-Žinome, kad pusiaukraštinių susikirtimo taškas $T$ pusiaukraštines dalina santykiu $2:1$, todėl jį randame prie viršūnės $a$ pridėję $\frac{2}{3}$ vektoriaus iš $a$ į $a_1$, kur $A_1$ yra kraštinės $BC$ vidurio taškas. Gauname $t=a+\frac{2}{3}(a_1-a)=a+\frac{2}{3}(\frac{b+c}{2}-a)=\frac{a+b+c}{3}$.
+  Tašką $C$ gausime prie taško $B$ pridėję vektorių $\vv{BC}$, kuris yra lygus
+  vektoriui $\vv{AB}$, pasuktam $90$ laipsnių kampu prieš laikrodžio rodyklę.
+  Vektorių $AB$ atitinka kompleksinis skaičius $b-a$, o pasuktą $90$ laipsnių
+  kampu, kompleksinis skaičius $(b-a)i$. Tad tašką $C$ atitiks komplesinis
+  skaičius $b + (b-a)i$. Analogiškai, tašką $D$ atitiks kompleksinis skaičius
+  $a + (b-a)i$.
+  \begin{figure}[h]
+    \centering
+    \begin{asy}
+      size(200);
+      graph.xaxis("$\Re$");
+      graph.yaxis("$\Im$");
+
+      pair O=origin;
+      pair A=(25, 10);
+      pair B=A+(10,6);
+      pair C=(B-A)*(0,1) + B;
+      pair D=(B-A)*(0,1) + A;
+
+      draw(A--B--C--D--A);
+      draw(O--B-A);
+      draw(O--(B-A)*(0,1));
+
+      dot(A,blue);
+      dot(B,blue);
+      dot(C,blue);
+      dot(D,blue);
+      dot(B-A,blue);
+      dot((B-A)*(0,1),blue);
+
+      label("$O$",O,SW,blue);
+      label("$A$",A,S,blue);
+      label("$B$",B,E,blue);
+      label("$b+(b-a)i$",C,N,blue);
+      label("$a+(b-a)i$",D,W,blue);
+      label("$b-a$",B-A,N,blue);
+      label("$(b-a)i$",(B-A)*(0,1),N,blue);
+    \end{asy}
+    \caption{}
+  \end{figure}
 \end{sprendimas}
 
-PAVEIKSLIUKAS2
+Naudojantis šiuo kvadrato viršūnių aprašymu galima išspręsti ganėtinai
+nepaprastą uždavinį:
 
-Pastebėkime, kad tuo pačiu būdu galime rasti tašką ant atkarpos, kuris ją dalija bet kokiu duotu santykiu.
+\begin{pav}
+  Duotas keturkampis $ABCD$. Ant jo kraštinių $AB$, $BC$, $CD$ ir $DA$ nubrėžti
+  išoriniai kvadratai, kurių centrai yra $P, Q, R, S$.  Įrodykite, kad atkarpa
+  $PR$ yra lygi ir statmena atkarpai $QS$. 
+\end{pav}
 
-
-
-\begin{thmnr}\textit{(Oilerio tiesės teorema)}
-Turime trikampį $ABC$, apibrėžtinio apskritimo centras $O$, aukštinių susikirtimo taškas $H$. Tada galioja sąryšis
-$h + 2o = a + b + c$.
-\end{thmnr}
 \begin{sprendimas}
-Atsidėkime tašką $p=c+a-o$. Pastebėkime, kad taškai $AOCP$ sudaro rombą (atkarpa $AO$ yra lygiagreti atkarpai $CP$, be to $|a-o|=|c-o|$). Žinome, kad tiesė $BH$ yra statmena tiesei $AC$, bet pagal rombo savybes tiesė $OP$ yra statmena tiesei $AC$, todėl $OP$ lygiagreti $BH$. Vadinasi, $h-b=(p-o)r$, kur $r \in \mathbb{R}$. Persirašome paskutinę tapatybę į $h+2ro=b+r(a+c)$. Mes norime įrodyti, kad $r=1 \Leftrightarrow BH=2OD,$ kur $D$ yra $AC$ vidurys. 
+  Tarkime, kad keturkampio $ABCD$ viršūnės yra išvardintos prieš laikrodžio
+  rodyklę. Nagrinėkime išorinį kvadratą nubrėžta ant kraštinės $AB$. Iš praeito
+  pavyzdžio žinome, kad jo įstrižai priešingą $A$ viršūnę atitiks kompleksinis
+  skaičius $b + (a-b)i$ (kodėl ne $b + (b-a)i$ ?). Vadinasi jo centrą
+  (įstrižainės vidurį) $P$ atitiks kompleksinis skaičius 
+  $$
+  p=\frac{a+b+(a-b)i}{2}.
+  $$
+  Analogiškai randame
+  \begin{align*}
+    q&=\frac{b+c+(b-c)i}{2}, \\
+    r&=\frac{c+d+(c-d)i}{2},\\
+    s&=\frac{d+a+(d-a)i}{2}.
+  \end{align*}
+  O iš čia galime rasti kompleksinius skaičius, atitinkančius vektorius $\vv{PR}$
+  ir $\vv{QS}$:
+  \begin{align*}
+    r-p&=\frac{c+d-a-b+i(b+c-a-d)}{2},\\
+    s-q&=\frac{a+d-b-c+i(c+d-a-b)}{2}.
+  \end{align*}
+  Matome, kad $s-q=(r-p)i$, todėl atkarpa $QS$ yra lygi ir statmena atkarpai $PR$.
+  \begin{figure}
+    \centering
+    \begin{asy}
+      size(200);
 
-PAVEIKSLIUKAS3
+      pair A=(25, 10);
+      pair B=A+(10,6);
+      pair C=B+(-6,10);
+      pair D=C+(-14,-4);
+      pair P=(A+B+(A-B)*(0,1))/2;
+      pair Q=(B+C+(B-C)*(0,1))/2;
+      pair R=(C+D+(C-D)*(0,1))/2;
+      pair SS=(D+A+(D-A)*(0,1))/2;
 
+      draw(A--B--C--D--A);
+      draw(P--R, dotted);
+      draw(Q--SS, dotted);
 
-Pabaigai naudosime Euklidinę geometriją. Tegu $E, F$ yra atitinkamai atkarpų $AB, BC$ vidurio taškai. Kadangi $AB=2FD, BC=2DE, CA=2EF$, tai trikampiai $ABC$ ir $EFD$ yra panašūs. Be to, $OD$ yra statmena $EF$, $OE$ statmena $FD$, todėl $O$ yra trikampio $EDF$ aukštinių susikirtimo taškas. Naudodami trikampių panašumą gauname, kad $\frac{OD}{BH}=\frac{EF}{AC}=\frac{1}{2}.$ 
+      dot(A,blue);
+      dot(B,blue);
+      dot(C,blue);
+      dot(D,blue);
+
+      dot(P,blue);
+      dot(Q,blue);
+      dot(R,blue);
+      dot(SS,blue);
+
+      label("$A$",A,S,blue);
+      label("$B$",B,E,blue);
+      label("$C$",C,N,blue);
+      label("$D$",D,W,blue);
+      label("$\frac{a+b+(a-b)i}{2}$",P,S,blue);
+      label("$\frac{b+c+(b-c)i}{2}$",Q,N,blue);
+      label("$\frac{c+d+(c-d)i}{2}$",R,N,blue);
+      label("$\frac{d+a+i(d-a)}{2}$",SS,S,blue);
+    \end{asy}
+  \end{figure}
 \end{sprendimas}
 
-Sprendžiant uždavinius, kuriuose reikalingi apibrėžtinio apskritimo centras ir aukštinių susikirtimo taškas, atrodytų, kad paprasčiausia būtų tiesiog rasti šių taškų išraiškas per $a, b, c.$ Tačiau jos yra gan komplikuotos, todėl dažniausiai daug paprasčiau yra tarti, kad $a, b, c$ yra ant vienetinio apskritimo, tada $o=0, h=a+b+c$ ir turime $|a|=|b|=|c|=1$. Plačiau šią idėją aptarsime kitame skyrelyje.
+Kompleksnių skaičių dalyba, kaip įprasta, yra ekvivalenti daugybai iš
+atvirkštinio (kompleksinio skaičiaus $re^{i\theta}$ atvirkštinis  yra
+$\frac{1}{r}e^{-i\theta}$). Todėl ją dažniau pasitelksime ne norėdami pasukti
+turimą kompleksinį skaičių, o norėdami rasti (išreikšti) kampą ir modulių
+santykį tarp jau turimų. Pavyzdžiui:
 
+\begin{teig}
+  Trikampiai $A_1B_1C_1$ ir $A_2B_2C_2$ (kurių viršūnės išvardintos prieš
+  laikrodžio rodyklę) yra panašūs jei
+  $$
+  \frac{a_1-b_1}{c_1-b_1} = \frac{a_2-b_2}{c_2-b_2}.
+  $$
+\end{teig}
 
+\begin{proof}
+  Tam, kad trikampiai būtų panašūs, pakanka, kad jie turėtų po vieną lygų kampą
+  $$
+  \angle A_1B_1C_1 = A_2B_2C_2
+  $$
+  ir vienodo ilgių santykio gretimas kampui kraštines
+  $$
+  A_1B_1:C_1B_1 = A_2B_2:C_2B_2.
+  $$
+  Užrašę kairįjį santykį kaip kompleksinį skaičių
+  $$
+  \frac{a_1-b_1}{c_1-b_1} = r_1e^{i\theta_1}
+  $$
+  matome, kad $\theta_1$ kaip tik ir lygus kampui $\angle A_1B_1C_1$, o
+  $r_1$ santykiui $A_1B_1:C_1B_1$. Analogiškai ir su dešiniuoju santykiu, tad
+  jei gauti skaičiai $r_1e^{i\theta_1}$ ir $r_2e^{i\theta_2}$ lygūs, tai
+  trikampiai panašūs.
+\end{proof}
 
+\begin{thm}
+Taškai $a, b, c, d$ priklauso vienam apskritimui tada ir tik tada, kai: 
+$$\frac{a - c}{b - c}:\frac{a-d}{b-d}\in\mathbb{R}.$$
+\end{thm}
 
+\begin{proof}
+Iš Euklidinės geometrijos žinome, kad taškas $D$ priklauso apskritimui, apibrėžtam apie trikampį $ABC$, tada ir tik tada, kai arba $\angle BCA=\angle BDA$, arba $\angle BCA+\angle BDA=\pi $. Pirmu atveju, taškai $C, D$ turi būti toje pačioje tiesės $AB$ pusėje, antru - skirtingose. Nagrinėkime pirmąjį variantą (antrasis įrodomas analogiškai). 
 
+\vspace{1cm}
+\mbox{} % Thanks, Obama!
+\vspace{-1cm}
 
-\subsection*{Kompleksinių skaičių sandauga}
-Pagrindinis kompleksinių skaičių privalumas geometrijoje yra patogus įvairiausių geometrinių taškų apsirašymas, naudojant kompleksinių skaičių sandaugą.
+\begin{figure}[h!]
+  \centering
+  \begin{asy}
+    size(200);
 
-Tarkime, kad turime du kompleksinius taškus $a=r_1 e^{i\theta _1}$ ir $b=r_2 e^{i\theta_2}$. Tada akivaizdu, kad $ab=r_1r_2e^{i(\theta_1+\theta_2)}$. Todėl, dauginant kompleksinius taškus taisyklė yra tokia - moduliai susidaugina, o kampai susideda. Iš pirmo žvilgsnio sandauga gali pasirodyti nelabai panaudojama - taškas $ab$ gali pasirodyti, kad prasmingai nesisieja nei su $a$, nei su $b$.  
+    pair A=(25, 10);
+    pair B=A+(10,0);
+    pair C=B+(-1,7);
+    pair X=(A-C)/(B-C);
+    pair D=(A-B*X*0.3)/(1-X*0.3);
 
-Panagrinėkime porą konkrečių pavyzdžių. 
+    add(anglem(A,C,B,30,red,0));
+    add(anglem(A,D,B,30,red,0));
+
+    draw(A--B--C--A);
+    draw(B--D--A);
+    draw(circumcircle(A,B,C));
+
+    dot(A,blue);
+    dot(B,blue);
+    dot(C,blue);
+    dot(D,blue);
+
+    label("$A$",B,SE,blue);
+    label("$B$",A,SW,blue);
+    label("$D$",C,NE,blue);
+    label("$C$",D,NW,blue);
+    label("$Arg(\frac{a-d}{b-d})$",C,(-4,-10),blue);
+    label("$Arg(\frac{a-c}{b-c})$",D,(4,-8),blue);
+  \end{asy}
+\end{figure}
+
+Nagrinėkime teoremoje minimus santykius: 
+$$
+z_1 =\frac{a - c}{b - c}, \quad z_2 =\frac{a - d}{b - d}.
+$$ 
+Nesunku pamatyti, kad arba $Arg (z_1) = \angle BCA$ ir $Arg (z_2) = \angle BDA$ (kai $A, B, C$ ir $A, B, D$ išdėstyti pagal laikrodžio rodyklę), arba $Arg (z_1) = -\angle BCA$ ir $Arg (z_2) =- \angle BDA$  (kai $A, B, C$ ir $A, B, D$ išdėstyti prieš laikrodžio rodyklę). Bet kuriuo atveju $z_1/z_2$ bus ant realiosios ašies tada ir tik tada, kai $\angle BCA=\angle BDA$, ką ir reikėjo įrodyti.
+\end{proof}
+
+\subsection{Kompleksinės plokštumos parinkimas}
+
+Šiame skyrelyje pamatėme, kad geometriniams taškams galime priskirti
+kompleksinius skaičius ir geometrinius sąryšius perrašyti naudodamiesi
+kompleksinių skaičių algebra. 
+
+Kaip konkrečiai priskirsime taškams skaičius priklauso nuo mūsų ir beveik visada
+neprarasdami bendrumo kompleksinę plokštumą galime parinkti laisvai. Tai yra:
+pirma, bet kurį vieną tašką galime sutapatinti su kompleksinės plokštumos
+pradžia, antra, likusius taškus galime pasukti norimu kampu aplink plokštumos
+pradžią, ir trečia, visus taškus galime padauginti iš norimo realaus skaičiaus.
+
+Pavyzdžiui, jei sąlygoje duotas lygiakraštis trikampis $ABC$, tai jį,
+priklausomai nuo uždavinio ir kitų taškų, kompleksinėje plokštumoje galime
+atidėti bent keliais prasmingais būdais. Galime parenkti kompleksinę plokštumą
+bet kaip, galime sutapatinti kompleksinės plokštumos pradžią su vienu iš taškų,
+arba galime visoms trims viršūnėms priskirti konkrečius kompleksinius skaičius
+(lygties $z^3 = 1$ sprendinius), priklausančius vienetiniam apskritimui.
+
+\begin{figure}[h]
+  \centering
+  \begin{asy}
+    size(100);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
+
+    pair A=(10, 6);
+    pair B=A+(10,2);
+    pair C=A+(B-A)*(1/2, sqrt(3)/2);
+
+    draw(A--B--C--A);
+
+    dot(A,blue);
+    dot(B,blue);
+    dot(C,blue);
+    dot((30,30),invisible);
+
+    label("$A$",A,SW,blue);
+    label("$B$",B,SE,blue);
+    label("$a+(b-a)\omega$",C,N,blue);
+  \end{asy}
+  \hspace{1cm}
+  \begin{asy}
+    size(100);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
+
+    pair A=origin;
+    pair B=A+(10,2);
+    pair C=A+(B-A)*(1/2, sqrt(3)/2);
+
+    draw(A--B--C--A);
+
+    dot(A,blue);
+    dot(B,blue);
+    dot(C,blue);
+    dot((20,20),invisible);
+
+    label("$O$",A,SW,blue);
+    label("$A$",B,SE,blue);
+    label("$a\omega$",C,N,blue);
+  \end{asy}
+  \hspace{1cm}
+  \begin{asy}
+    size(100);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
+
+    pair omega = (-1/2, sqrt(3)/2);
+    pair A=omega;
+    pair B=A*omega;
+    pair C=B*omega;
+
+    draw(A--B--C--A);
+
+    dot(A,blue);
+    dot(B,blue);
+    dot(C,blue);
+    dot((2,2),invisible);
+
+    label("$\omega$",A,NW,blue);
+    label("$\omega^2$",B,SW,blue);
+    label("$1$",C,NE,blue);
+  \end{asy}
+  \caption{Lygiakraštis trikampis plokštumoje: a.) laisvai; b.) viena viršūnė
+    sutapatinta su plokštumos pradžia; c.) viršūnės ant vienetinio apskritimo,
+    sutapatintos su kubinėmis šaknimis iš vieneto.}
+\end{figure}
+
+Šie skirtingi kompleksinės plokštumos parinkimo būdai leidžia sąryšius aprašyti
+paprastėmis kompleksinių skaičių išraiškomis. Su tuo dažnai susidursime
+tolimesniuose skyreliuose, o šį baigsime tinkamo plokštumos parinkimo naudą
+iliustruojančiu pavyzdžiu.
+
+\begin{pav}
+Duotas trikampis $ABC$ ir aplink jį apibrėžtas apskritimas $S$. Šio apskritimo simetriški atspindžiai tiesių $AB$, $BC$, $CA$ atžvilgiu atitinkamai yra $S_{AB}, S_{BC}, S_{CA}$. Įrodykite, kad šie trys apskritimai kertasi viename taške.
+\end{pav}
+
+\begin{sprendimas}
+  Neprarasdami bendrumo, tarkime, kad $S$ yra kompleksinės plokštumos vienetinis
+  apskritimas, t.y., jo centrą $O$ atitinka plokštumos centras ($o=0$) ir jo
+  spindulio ilgis lygus vienetui: 
+  $$
+  |a|=|b|=|c|=1.
+  $$
+  Tada $S_{AB}$ centras yra $o_{AB}=a+b$, nes $AB$ yra statmena $O_{AB}O$.
+  Analogiškai, $S_{BC}$ ir $S_{CA}$ centrai atitinkamai yra $b+c$ ir $c+a$.
+  Taškas $z$ priklauso visiems trims apskritimams tada ir tik tada, jeigu jis
+  yra lygties $|z-(a+b)|=|z-(b+c)|=|z-(c+a)|=1$ sprendinys. Belieka pastebėti,
+  kad šią lygybę tenkina aukštinių susikirtimo taškas $h=a+b+c$.
+\end{sprendimas}
+
+\subsection{Uždaviniai}
+
 \begin{enumerate}
-\item Turime trikampį ABC. Tada nesunkiai galime rasti kampą A, kurį pasižymėkime $\theta$. Pastebime, kad $\frac{c-a}{|c-a|}$ yra lygiagreti atkarpai AC ir vienetinio ilgio, analogiškai $\frac{b-a}{|b-a|}$ yra lygiagreti AB ir vienetinio ilgio, todėl 
-
-$$\dfrac{\displaystyle \frac{c-a}{|c-a|}}{\displaystyle \frac{b-a}{|b-a|}}=e^{i\theta}.$$
-
-Dažniausiai sprendžiant uždavinius, paties kampo išsireikšti ir nereikia, nes $e^{i\theta} = e^{i\phi} \Leftrightarrow \theta = \phi + 2\pi k$, kažkokiam sveikajam skaičiui $k$. Todėl kalbant apie mažus kampus (mažesnius už $\pi$) gauname $\theta = \phi $.
-
-
-
-\item
-Turint kvadratą ABCD (viršūnės eina prieš laikrodžio rodyklę), per taškus $a$ ir $b$ galima nesunkiai rasti kitas kraštines - tada $c= i(a-b)+b$, o $d=i(b-a) + a$. Pastebėkime, kad $a-b$ atitinka kraštinę AB, bet iš koordinačių pradžios taško, todėl padauginę iš $i$, pasukame ją kampu $\frac{\pi}{2}$ ir pridėję $b$ gauname būtent tašką $c$.
-
-PAVEIKSLELIS (manau gerai butu)
-
-\item
-Turint lygiakraštį trikampį, įbrėžtą į vienetinį apskritimą, kurio viena iš viršūnių yra taške $a=1+i\cdot 0$, kitas dvi galime pasižymėti taškais $\omega=e^{i\frac{2\pi}{3}}$ ir $w^2$. Tada visos trys viršūnės apsirašo kaip $\omega, \omega^2$ ir $\omega^3=1$. 
-
-Kitame skyrelyje pamatysime, kad bet kokį lygiakraštį trikampį, naudodami plokštumos transformacijas, galime taip apsirašyti.
-
+  \item Perrašykite kompleksiniais skaičiais teiginį „$ABCD$ yra
+    lygiagretainis“. 
+  \item Įrodykite, kad trikampio vidurio linija -- atkarpa, jungianti dviejų
+    kraštinių vidurio taškus -- yra lygiagreti ir lygi pusei likusiosios
+    kraštinės.
+  \item Lygiakraščio trikampio $ABC$ viršūnę $C$ atitinkantį kompleksinį skaičių
+    išreikškite per $a$ ir $b$.
+  \item Tegu $AD$ apie trikampį $ABC$ apibrėžto apskritimo skersmuo, $H$ --
+    aukštinių susikirtimo taškas, o $M$ -- kraštinės $BC$ vidurio taškas.
+    Įrodykite, jog taškas $M$ yra atkarpos $DH$ vidurio taškas.
+%Tegu vienetinis apskritimas būna apibrėžtas apie apskritimą $ABC$. Pagal Oilerio tiesės teoremą teoremą turime, kad 
+%$$
+%h = a+b+c.
+%$$ 
+%Kadangi $M$ yra $BC$ vidurio taškas, tai 
+%$$
+%m = \frac{b + c}{2}.
+%$$
+%Kadangi skersmens vidurio taškas yra koordinačių pradžios taškas ir jis yra lygus nuliui, tai taškas $D$ tenkina $d = -a.$ Galiausiai pastebime, kad $HD$ vidurio taškas yra 
+%$$
+%\frac{d + h}{2} = \frac {(-a) + a + b + c}{2}= \frac{b + c}{2}.
+%$$
+%O tai ir yra mūsų jau surastas taškas $M$.
 \end{enumerate}
 
 
-\begin{pavnr}
-Duotas keturkampis $ABCD.$ Ant visų jo kraštinių nubrėžti išoriniai kvadratai, kurių centrai yra $P, Q, R, S$, atitinkamai ant $AB, BC, CD$ ir $DA.$ Įrodykite, kad $PR$ yra lygi ir statmena $QS$. 
-\end{pavnr}
-\begin{sprendimas}
-Nagrinėkime kvadratą $ABCD$ (viršūnės eina prieš laikrodžio rodyklę). Tada $p=\frac{v+b}{2}$, bet $v=e^{i\frac{\pi}{2}}(b-a)+a$. Todėl $$p=\frac{a+b+i(b-a)}{2}.$$
-PAVEIKSLIUKAS4
-
-Analogiškai žinome, kad $$q=\frac{b+c+i(c-b)}{2},$$ $$r=\frac{c+d+i(d-c)}{2},$$ $$s=\frac{d+a+i(a-d)}{2}.$$
-Todėl $$p-r=\frac{a+b-c-d+i(b+c-a-d)}{2},$$ $$q-s=\frac{b+c-a-d+i(c+d-a-b)}{2}.$$
-Beliko pastebėti, kad $e^{\frac{\pi}{2}}(q-s)=p-r$, todėl QS yra lygi ir statmena PR.
-\end{sprendimas}
-
-
-
-
-
-\begin{thmnr}
-Taškai $a, b, c, d$ priklauso vienam apskritimui tada ir tik tada, kai: 
-$$\frac{a - c}{b - c}:\frac{a-d}{b-d}\in\mathbb{R}.$$
-\end{thmnr}
-\begin{sprendimas}
-Iš Euklidinės geometrijos žinome, kad taškas $D$ priklauso apskritimui, apibrėžtam apie trikampį $ABC$, tada ir tik tada, kai arba $\angle BCA=\angle BDA$, arba $\angle BCA+\angle BDA=\pi $. Pirmu atveju, taškai $C, D$ turi būti toje pačioje tiesės $AB$ pusėje, antru - skirtingose. Nagrinėkime pirmąjį variantą (antrasis įrodomas analogiškai). 
-
-Nagrinėkime skaičius $$z_1 =\frac{a - c}{b - c}, z_2 =\frac{a - d}{b - d}.$$ 
-Nesunku pamatyti, kad arba $Arg (z_1) = \angle BCA$ ir $Arg (z_2) = \angle BDA$ (kai $A, B, C$ ir $A, B, D$ išdėstyti pagal laikrodžio rodyklę), arba $Arg (z_1) = -\angle BCA$ ir $Arg (z_2) =- \angle BDA$  (kai $A, B, C$ ir $A, B, D$ išdėstyti prieš laikrodžio rodyklę). Bet kuriuo atveju $z_1/z_2$ bus ant realiosios ašies tada ir tik tada, kai $\angle BCA=\angle BDA$, ką ir reikėjo įrodyti.
-
-PAVEIKSLIUKAS5
-\end{sprendimas}
-
-Jeigu norime įrodyti, kad $z \in \mathbb{C}$ yra ant realiosios ašies, dažniausiai daug paprasčiau yra įrodyti ekvivalenčią sąlygą: $z=\overline{z}$.
-
-
-
-
-
-
+\section{Tiesės lygtis}
 \subsection*{Tiesės lygtis}
 
 Šiame skyriuje išmoksime apsirašyti tiesės lygtis, kurios padės surasti taškus, esančius ant lygiagrečių, statmenų ir susikertančių tiesių.
@@ -228,67 +739,6 @@ Naudosimės lygiagretumo ir statmenumo teorema. $H$ priklauso tiesei $BC$, todė
 
 Dažniausiai uždaviniuose išraiškas galima padaryti paprastesnėmis, pvz., neprarandant bendrumo tariant, kad $a=0$ arba kad trikampis $ABC$ yra ant vienetinio apskritimo, o tai duoda $|a|^2=a\overline{a}=b\overline{b}=c\overline{c}=1$.
 
-
-\subsection*{Keli patarimai sprendžiant uždavinius}
-
-Šiame skyrelyje apžvelgsime uždavinių sprendimo metodus. Sprendžiant uždavinius reikia išnaudoti visas geometrines sąlygas, duotas uždavinyje. Kiekvienas uždavinys yra unikalus ir nuo to, kuriuos taškus pasirinksime laisvai ir per kuriuos išreikšime visus likusius, labai priklauso, kaip lengvai mes uždavinį išspręsime. Sprendžiant geometrinius uždavinius šiuo metodu ir neatsargiai pasirenkant taškus, galima gauti labai komplikuotas išraiškas, kurias bus sunku suprastinti. Todėl svarbu surasti geriausią taškų aprašymo būdą.
-
-
-
-Pavyzdžiui, jeigu uždavinyje duotas bet koks kvadratas $ABCD$, neužtenka tiesiog įsivesti $4$ kompleksinių skaičių ant plokštumos. Kaip matėme pirmame pavyzdyje, tokiu atveju galime paimti bet kokius du taškus $a, b$, o kitas viršūnes išsireikšti per kompleksines konstantas, tardami, kad viršūnės eina prieš laikrodžio rodyklę. Tada $c=(a-b)i^3+b,  d=(b-a)i + a$.
-
-Jeigu duotas bet koks lygiakraštis trikampis $ABC$, $a, b$ viršūnes galime pasirinkti laisvai, o trečiąją išreikšti $c=(b-a)e^{i\frac{\pi}{3}}+a$. Antroje teoremoje matėme pavyzdį, kaip galime išsisukti turint rombą. Su įvairiomis kitomis figūromis, kaip lygiašonis trikampis, lygiagretainis ar lygiašonė trapecija, gali būti kiek sudėtingiau. Kelis tokius atvejus apžvelgsime nagrinėdami konkrečius uždavinius.
-
-Keli svarbūs triukai sprendžiant uždavinius yra tokie, kad neprarasdami bendrumo visada galime pasirinkti:
-\begin{enumerate}
-\item Bet kokį vieną tašką $z \in \mathbb{C}$ koordinačių pradžios tašku, t.y., prilyginti nuliui. Taikydami šią plokštumos transformaciją, visus plokštumos taškus pastumiame per $-z$, todėl taškas $z$ nukeliauja į nulį, bet visas geometrinis brėžinys lieka neiškraipytas.
-\item Pasirinkti bet kokio vieno taško ilgį (ne koordinačių pradžios taško), pvz., $|u|=1, u \in \mathbb{C}$. Ši transformacija visus plokštumos taškus padaugina iš realaus teigiamo skaičiaus, bet neiškraipo geometrinio brėžinio, tik jį proporcingai padidina arba sumažina. Dažniausiai ši transformacija yra naudojama, kai koordinačių pradžios tašku pasirenkamas apibrėžtinio apskritimo apie trikampį $ABC$ centras, o viršūnių $A, B, C$ ilgiai prilyginami vienetui. Tada $o=0$ ir visos viršūnės tenkina $|a|^2=1, \Leftrightarrow a\overline{a}=1 \Leftrightarrow a =\frac{1}{\overline{a}}$, o tai dažnai supaprastina daug išraiškų.
-\item Pasukti visą plokštumą kampų $\theta$, t.y. padauginti visus plokštumos taškus iš $e^{i\theta}$. Tokiu būdu bet kokį tašką ant vienetinio apskritimo galime prilyginti pvz., $1$ ar $i$. Iš tiesų, ši transformacija retai kada būna naudinga. Pirma, prilygindami $a=1$, mes supaprastinsime visas išraiškas, kuriose turime $a$ sandaugą su kitais skaičiais, bet dažnai turėsime narius, tokius kaip $a-b$, kurie susiprastins iki $1-b$, ir realios naudos iš to negausime. Antra, jeigu, pavyzdžiui, uždavinio sąlyga yra simetriška trikampio viršūnių $ABC$ atžvilgiu, kartais neapsimoka prarasti simetrijos šių taškų atžvilgiu, nes tada galime lengviau rasti įvairių taškų išraiškas tiesiog pakeisdami raides ir galime pasitikrinti, ar skaičiavimuose nepadarėme algebrinės klaidos.
-\end{enumerate}
-
-
-Skyrių užbaigiame dar vienu triuku, kuris parodys, kad kartais užtenka atspėti sprendinį ir patikrinti, ar jis yra teisingas, taip išvengiant komplikuotų skaičiavimų, bei keliais uždaviniais.
-
-\begin{pavnr}
-Duotas trikampis $ABC$. Aplink jį apibrėžtas apskritimas $S$. Šio apskritimo simetriški atspindžiai tiesių $AB$, $BC$, $CA$ atžvilgiu atitinkamai yra $S_{AB}, S_{BC}, S_{CA}$. Įrodykite, kad šie trys apskritimai kertasi viename taške.
-\end{pavnr}
-\begin{sprendimas}
-Neprarasdami bendrumo, tarkime, kad $S$ yra vienetinis apskritimas, t.y., $o=0$ ir $|a|=|b|=|c|=1$. Tada $S_{AB}$ centras yra $o_{AB}=a+b$, nes $AB$ yra statmena $O_{AB}O$. Analogiškai, $S_{BC}$ ir $S_{CA}$ centrai atitinkamai yra $b+c$ ir $c+a$. Taškas $z$ priklauso visiems trims apskritimams tada ir tik tada, jeigu jis yra sprendinys $|z-(a+b)|=|z-(b+c)|=|z-(c+a)|=1$. Belieka pastebėti, kad aukštinių susikirtimo taškas $h=a+b+c$ (naudojantis Oilerio tiesės teorema) yra šios lygties sprendinys. Vadinasi, šie trys apskritimai kertasi viename taške, kuris yra trikampio $ABC$ aukštinių susikirtimo taškas.
-
-\end{sprendimas}
-
-
-
-
-
-
-\begin{pavnr}
-Duota trapecija $ABCD$ su pagrindais $BC$ ir $AD$, o jos įstrižainių susikirtimo taškas yra lygus $P$. Taškas $M$ yra $BC$ vidurio taškas bei yra žinoma, kad $\angle ABD + \angle ACD = \pi.$ Ant kraštinės $AD$ paimtas taškas $X$ toks, kad $(\frac {PD}{PA})^2 = \frac {DX}{XA}$. Įrodykite, kad $MX$ yra statmena trapecijos pagrindams.
-\end{pavnr}
-
-\begin{sprendimas}
-Šį kartą spręsime kompleksinių koordinačių centru pasirinkę tašką $P$. Iš Euklidinės geometrijos
-nesunku pastebėti, kad $\Delta APD$ yra panašus $\Delta CPB$. Šis faktas yra labai naudingas tvarkantis su trapecijos kraštinėmis, nes gauname, kad $c=ka,  b=kd,$ kur $k$ yra realus teigiamas skaičius.
-
-Kadangi yra žinoma, jog $ ( \frac {PD}{PA})^2 = \frac {DX}{XA} $, gauname, kad 
-$$ x = \frac { da \bar a + ad \bar d }{ a \bar a + d \bar d},$$
-nes $ ( \frac {PD}{PA})^2 =\frac {d \bar d} {a \bar a} $ ir $\frac {DX}{XA} = \frac{d-x}{x-a}.$
-
-Koeficientą $k$ mums padės surasti tai, kad $ \angle ABD + \angle ACD = \pi $, nes (panašiai kaip keturių taškų priklausymo vienam apskritimui teoremos įrodyme) gauname lygybę:
-$$\frac {b-a}{\bar b - \bar a} : \frac { b-d}{\bar b - \bar d} =  \frac {d-c}{\bar d - \bar c} : \frac { c-a}{\bar c- \bar a}.$$
-Pertvarkius lygybę gauname, kad 
-$$ k =  \frac { \bar d a + \bar a d }{a \bar a + d \bar d}. $$
-Galiausiai, pagal tiesių lygiagretumo ir statmenumo teoremą, $MX$ yra statmena trapecijos pagrindams tada ir tik tada, kai
- $$  \frac {m-x}{ \bar m - \bar x} = - \frac {a - d}{ \bar a - \bar d},$$
-kur žinome, jog $ m =\frac{b+c}{2}= k \frac { a+d} { 2} $, nes $M$ yra atkarpos $BC$ vidurio taškas. Taigi, įsistatę gautas reikšmes, įrodome tai, ką mums ir reikėjo gauti
-$$ \frac {m-x}{ \bar m - \bar x}= 
-\frac {(a-b)( \bar a b - \bar b a) }{(\bar a- \bar b)( \bar b a - \bar a b) } = - \frac {a - d}{ \bar a - \bar d}.$$
-\end{sprendimas}
-
-
-
-
-
 \begin{pavnr}
 Tegul $F$ yra taškas ant trapecijos $ABCD$ pagrindo $AB$, toks, kad $DF=CF$. Tegul E - trapecijos įstrižainių susikirtimo taškas, o taškai $O_1$ ir $O_2$ - apibrėžtų apie $ \Delta ADF$ ir $\Delta FBC$ apskritimų centrai. Įrodykite, kad $ FE \bot O_1 O_2 $.
 \end{pavnr}
@@ -311,34 +761,7 @@ Galiausiai liko įrodyti, kad $FE \bot O_1 O_2 $. Vėl naudojamės ta pačia teo
 \end{sprendimas}
 
 
-
-
-
-\begin{pavnr}
-
-Apie trikampį $ABC$ apibrėžto apskritimo skersmuo - $AD$, aukštinių susikirtimo
-taškas (dar žinomas kaip ortocentras) - $H$, o $M$ - kraštinės $BC$ vidurio taškas. Įrodykite, jog taškas M yra atkarpos HD vidurys.
-\end{pavnr}
-\begin{sprendimas}
-Tegu vienetinis apskritimas būna apibrėžtas apie apskritimą $ABC$. Pagal Oilerio tiesės teoremą teoremą turime, kad $$ h = a+b+c.$$ Kadangi M yra BC vidurio taškas, tai; $$m= \frac{b+c}{2}.$$ Kadangi skersmens vidurio taškas yra koordinačių pradžios taškas ir jis yra lygus nuliui, tai taškas $d$  tenkina $d= -a.$ Galiausiai pastebime, kad $HD$ vidurio taškas yra $$ \frac{d+h}{2} = \frac {(-a)+a+b+c}{2}= \frac{b+c}{2}.$$ O juk tai ir yra mūsų jau surastas taškas $M$, ką mums ir reikėjo įrodyti.
-\end{sprendimas}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Vienetinis apskritimas}
+\section{Vienetinis apskritimas}
 
 Kaip pamatysime šio skyriaus teoremoje, taškai ant vienetinio apskritimo turi daug gražių savybių, kurios supaprastina daug skaičiavimų. Todėl uždaviniuose yra labai svarbu protingai pasirinkti apskritimą, kurį laikysime vienetiniu. Pasirinktas apskritimas nebūtinai turi būti prasmingas iš uždavinio sąlygos perspektyvos. Vienetiniu apskritimu galima pasirinkti bet kurio trikampio apibrėžtinį (ar įbrėžtinį) apskritimą, o trikampį gali sudaryti bet kurie 3 taškai.
 
@@ -592,7 +1015,7 @@ Kadangi iš pradinių sąlygų gavome (**), tai dar nereiškia, kad abu sprendin
 
 
 
-\chapter{Vienetinis apskritimas kitu kampu}
+\section{Vienetinis apskritimas kitu kampu}
 
 Iš tiesų, šio skyriaus uždaviniai mažai skiriasi nuo praeitojo, nes mes vėl turime vieną pagrindinį apskritimą, kurį laikome vienetiniu. Visgi formulės, kurias čia naudosime, yra kiek subtilesnės. Išmoksime metodą, kaip rasti apskritimo lankų vidurio taškus, ir kaip rasti įbrėžtinio apskritimo centrą. Taip susiesime apibrėžtinį apskritimą su įbrėžtiniu.
 
@@ -752,7 +1175,7 @@ Beliko išnagrinėti kelis atvejus. Jeigu $k>0$, tai $\beta>\frac{2}{3}\pi$, o t
 
 
 
-\chapter{Figūrų plotas}
+\section{Figūrų plotas}
 
 Bet kurios figūros plotą galima apskaičiuoti suskaidant tą figūrą į trikampius, apskaičiuoti tų trikampių plotą ir viską sudėti. Šiame skyriuje išmoksime trikampio ploto formulę, kuria naudojantis galima apskaičiuoti bet kurios figūros plotą, ir išspręsime kelis su ja susijusius uždavinius.
 
@@ -818,4 +1241,35 @@ Matome, kad sukeitus ploto išraiškoje $u$ ir $v$ vietomis, gausime $-S$. Be to
 
 
 
+
+\section{TODO: liekanos}
+
+Turime trikampį ABC. Tada nesunkiai galime rasti kampą A, kurį pasižymėkime $\theta$. Pastebime, kad $\frac{c-a}{|c-a|}$ yra lygiagreti atkarpai AC ir vienetinio ilgio, analogiškai $\frac{b-a}{|b-a|}$ yra lygiagreti AB ir vienetinio ilgio, todėl 
+
+$$\dfrac{\displaystyle \frac{c-a}{|c-a|}}{\displaystyle \frac{b-a}{|b-a|}}=e^{i\theta}.$$
+
+Dažniausiai sprendžiant uždavinius, paties kampo išsireikšti ir nereikia, nes $e^{i\theta} = e^{i\phi} \Leftrightarrow \theta = \phi + 2\pi k$, kažkokiam sveikajam skaičiui $k$. Todėl kalbant apie mažus kampus (mažesnius už $\pi$) gauname $\theta = \phi $.
+
+\begin{pavnr}
+Duota trapecija $ABCD$ su pagrindais $BC$ ir $AD$, o jos įstrižainių susikirtimo taškas yra lygus $P$. Taškas $M$ yra $BC$ vidurio taškas bei yra žinoma, kad $\angle ABD + \angle ACD = \pi.$ Ant kraštinės $AD$ paimtas taškas $X$ toks, kad $(\frac {PD}{PA})^2 = \frac {DX}{XA}$. Įrodykite, kad $MX$ yra statmena trapecijos pagrindams.
+\end{pavnr}
+
+\begin{sprendimas}
+Šį kartą spręsime kompleksinių koordinačių centru pasirinkę tašką $P$. Iš Euklidinės geometrijos
+nesunku pastebėti, kad $\Delta APD$ yra panašus $\Delta CPB$. Šis faktas yra labai naudingas tvarkantis su trapecijos kraštinėmis, nes gauname, kad $c=ka,  b=kd,$ kur $k$ yra realus teigiamas skaičius.
+
+Kadangi yra žinoma, jog $ ( \frac {PD}{PA})^2 = \frac {DX}{XA} $, gauname, kad 
+$$ x = \frac { da \bar a + ad \bar d }{ a \bar a + d \bar d},$$
+nes $ ( \frac {PD}{PA})^2 =\frac {d \bar d} {a \bar a} $ ir $\frac {DX}{XA} = \frac{d-x}{x-a}.$
+
+Koeficientą $k$ mums padės surasti tai, kad $ \angle ABD + \angle ACD = \pi $, nes (panašiai kaip keturių taškų priklausymo vienam apskritimui teoremos įrodyme) gauname lygybę:
+$$\frac {b-a}{\bar b - \bar a} : \frac { b-d}{\bar b - \bar d} =  \frac {d-c}{\bar d - \bar c} : \frac { c-a}{\bar c- \bar a}.$$
+Pertvarkius lygybę gauname, kad 
+$$ k =  \frac { \bar d a + \bar a d }{a \bar a + d \bar d}. $$
+Galiausiai, pagal tiesių lygiagretumo ir statmenumo teoremą, $MX$ yra statmena trapecijos pagrindams tada ir tik tada, kai
+ $$  \frac {m-x}{ \bar m - \bar x} = - \frac {a - d}{ \bar a - \bar d},$$
+kur žinome, jog $ m =\frac{b+c}{2}= k \frac { a+d} { 2} $, nes $M$ yra atkarpos $BC$ vidurio taškas. Taigi, įsistatę gautas reikšmes, įrodome tai, ką mums ir reikėjo gauti
+$$ \frac {m-x}{ \bar m - \bar x}= 
+\frac {(a-b)( \bar a b - \bar b a) }{(\bar a- \bar b)( \bar b a - \bar a b) } = - \frac {a - d}{ \bar a - \bar d}.$$
+\end{sprendimas}
 \end{document}

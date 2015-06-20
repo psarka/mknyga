@@ -1,18 +1,18 @@
 \ProvidesPackage{knyga}
 
 \pdfoutput=1 
-\usepackage[utf8x]{inputenc}  
+\usepackage{asymptote}
+\usepackage[utf8]{inputenc}  
 \usepackage[L7x]{fontenc}     
 \usepackage[lithuanian]{babel}
 \usepackage[colorlinks,pdftex,unicode, pdfview=FitB]{hyperref}
-\usepackage[pdftex]{graphicx}
+%\usepackage[pdftex]{graphicx}
 \usepackage{lmodern}
 \usepackage{amssymb, amsmath, amsthm}
 \usepackage{subfig}
 \usepackage{pdfpages}
 \usepackage{fancyhdr}
 \usepackage[Conny]{fncychap}
-\usepackage{asymptote}
 
 \opt{BW}{
 \addtolength{\oddsidemargin}{-.25in}
@@ -131,6 +131,8 @@
 \DeclareMathOperator{\dbd}{dbd}
 \DeclareMathOperator{\mbk}{mbk}
 \DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\Arg}{Arg}
 
 %Aplinkos
 \newcounter{foo}[section]
@@ -154,6 +156,7 @@
 %Asymptote komandos
 \begin{asydef}
 import olympiad;
+import graph;
 picture rightanglem(pair A, pair B, pair C, real s=8)
 {
 	picture pict;
