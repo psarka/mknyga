@@ -8,7 +8,6 @@
 
 \chapter {Kompleksinių skaičių geometrija}
 
-
 Geometrija kaip olimpiadinės matematikos sritis, tikriausiai turi daugiausiai skirtingų sprendimo metodų. Geometriniai uždaviniai nebūtinai turi daugiausia skirtingų sprendimų, bet metodų, kaip spręsti pasirinktą uždavinį, yra apstu. 
 
 Klasikinis būdas yra naudotis Euklidinės geometrijos teoremomis. Šis būdas yra turbūt vienas paprasčiausių - žvelgiant iš tos pusės, kad mokant kelias pagrindines trikampių panašumų ir apskritimų teoremas, galima išspręsti daugumą uždavinių. Taip pat, šis sprendimo būdas suteikia gilesnį uždavinio supratimą, nes uždavinio mintis nepasislepia algebrinėse išraiškose ir reiškinių pertvarkymuose. Bet iš kitos pusės, sprendžiant sudėtingesnius uždavinius, dažnai reikia labai daug patirties ir geros intuicijos, kuri padėtų pasipildyti brėžinį reikiamais taškais ar tiesėmis, kurie vestų iki sprendimo. Įgyti tokią intuiciją nėra lengva, todėl yra daug kitų būdų, kurie gali palengvinti spręsti geometrinius uždavinius.
@@ -678,6 +677,9 @@ Duotas trikampis $ABC$ ir aplink jį apibrėžtas apskritimas $S$. Šio apskriti
     kraštinės.
   \item Lygiakraščio trikampio $ABC$ viršūnę $C$ atitinkantį kompleksinį skaičių
     išreikškite per $a$ ir $b$.
+  \item Ant kiekvienos iš trikampio kraštinių išorės nubrėžtas lygiakraštis
+    trikampis. Įrodykyte, kad tų lygiakraščių trikampių aukštinių susikirtimo
+    taškai taip pat sudaro lygiakraštį trikampį.
   \item Tegu $AD$ apie trikampį $ABC$ apibrėžto apskritimo skersmuo, $H$ --
     aukštinių susikirtimo taškas, o $M$ -- kraštinės $BC$ vidurio taškas.
     Įrodykite, jog taškas $M$ yra atkarpos $DH$ vidurio taškas.
@@ -694,91 +696,279 @@ Duotas trikampis $ABC$ ir aplink jį apibrėžtas apskritimas $S$. Šio apskriti
 %\frac{d + h}{2} = \frac {(-a) + a + b + c}{2}= \frac{b + c}{2}.
 %$$
 %O tai ir yra mūsų jau surastas taškas $M$.
+
 \end{enumerate}
 
 
-\section{Tiesės lygtis}
-\subsection*{Tiesės lygtis}
+\section{Jungtinumas ir tiesė}
 
-Šiame skyriuje išmoksime apsirašyti tiesės lygtis, kurios padės surasti taškus, esančius ant lygiagrečių, statmenų ir susikertančių tiesių.
+Kompleksinio jungtinumo geometrinė interpretacija labai paprasta. Skaičius $a =
+x + yi = re^{i\theta}$ ir jam jungtinis $\bb{a} = x - yi = re^{-i\theta}$
+kompleksinių skaičių plokštumoje yra simetriški vienas kitam realiosios ašies
+atžvilgiu:
+\begin{figure}[h]
+  \centering
+  \begin{asy}
+    size(150);
+    graph.xaxis("$\Re$");
+    graph.yaxis("$\Im$");
 
-\begin{thmnr}
-Tiesės lygtis, sudarančios kampą $\theta$ su $Re$ ašimi ir einančios per tašką $x \in \mathbb{C}$: $$z-x=e^{2i\theta}(\overline{z}-\overline{x}).$$
-\end{thmnr}
+    pair O=origin;
+    pair A=(1.5, sqrt(3)/2);
+    pair B=(1.5, -sqrt(3)/2);
+
+    add(anglem((1,0),O,A,12,red,0));
+    add(anglem(B,O,(1,0),10,red,0));
+
+    draw(O--A);
+    draw(O--B);
+    draw(O--(1,0));
+
+    dot(A,blue);
+    dot(A*1.4,invisible);
+    dot(B,blue);
+
+    label("$x+iy$",A,N,blue);
+    label("$x-iy$",B,S,blue);
+
+    label("$\theta$",O,(8,2),blue);
+    label("$\theta$",O,(7,-2),blue);
+  \end{asy}
+\end{figure}
+
+Kaip pamatysime šiame skyrelyje, kompleksinis jungtinumas labai praverčia ne tik
+norit aprašyti simetriškus realiosios ašies atžvilgiu taškus, bet taip pat ir
+kampus bei nuo kampų lygumo priklausančius sąryšius.
+
+\subsection{Vektoriaus kampas su realiąja ašimi}
+
+Norėdami išreikšti kampą, kurį vektorius $\vv{AB}$ sudaro su realiąja ašimi
+galime jį užrašyti kaip $b-a = re^{i\theta}$. Ši išraiška ne visuomet patogi dėl
+daugiklio $r$ (modulio), pavyzdžiui, norit užrašyti dviejų kampų lygumą. Šio
+daugiklio galima atsikratyti padalijant skaičių iš jo modulio:
+$$
+\frac{b-a}{|b-a|} = e^{i\theta}.
+$$
+Deja, ši išraiška taip pat nėra labai gera, nes moduliai reiškiniuose
+dažniausiai patogiai neišsiprastina ir gali gerokai viską komplikuoti.
+Alternatyviai šį kampą galime išreikšti naudodami kompleksinį jungtinumą. Jei
+vektorius $AB$ su realiąją ašimi sudaro kampą $\theta$, tai su simetrišku sau
+šios ašies atžvilgiu vektoriumi sudarys kampą $2\theta$. Prisiminę, kad
+$\bb{b-a} = \bb{b} - \bb{a}$ tai galime užrašyti kaip
+$$
+\frac{b-a}{\bb{b} - \bb{a}} = e^{2i\theta}.
+$$
+
+Dažniausiai sprendžiant uždavinius, paties kampo išsireikšti ir nereikia, nes
+lygybė $e^{i\theta} = e^{i\phi}$ yra ekvivalenti $\theta = \phi + 2\pi k$,
+kažkokiam sveikajam skaičiui $k$. Tad jei turimi kampai yra mažesnius už $\pi$
+(kaip dažniausiai ir yra), gauname $\theta = \phi$.
+
+Naudodamiesi šia kampo išraiška galime algebriškai išreikšti lygiagretumą,
+statmenumą ir priklausymą vienai tiesei:
+
+\begin{teig}
+  Atkarpa $AB$ yra lygiagreti atkarpai $CD$ tada ir tik tada, kai 
+  $$
+  \frac{a - b}{\bb{a} -\bb{b}}=\frac{c - d}{\bb{c} -
+  \bb{d}}.
+  $$
+\end{teig}
+\begin{teig}
+  Atkarpa $AB$ yra statmena atkarpai $CD$ tada ir tik tada, kai 
+  $$
+  \frac{a - b}{\bb{a} -\bb{b}}=-\frac{c - d}{\bb{c} -
+  \bb{d}}.
+  $$
+\end{teig}
+\begin{teig}
+  Taškai $A$, $B$ ir $C$ priklauso vienai tiesei tada ir tik tada, kai 
+  $$
+  \frac{a - b}{\bb{a} -\bb{b}}=\frac{a-c}{\bb{a} -
+  \bb{c}}.
+  $$
+\end{teig}
+
+Šie teiginiai seka tiesiai iš kampo išraiškos: pirmoji lygybė ekvivalenti kampų
+tarp vektorių $\vv{AB}$, $\vv{CD}$ ir realiosios ašies lygumui arba skirtumui
+per $\pi$, antroji ekvivalenti šių kampų skirtumui per $\pi/2$ ar $3\pi/2$ (nes
+$e^{i\pi} = -1$), o trečioji kampų tarp vektorių $\vv{AB}$, $\vv{AC}$ ir
+realiosios ašies lygumui arba skirtumui per $\pi$. Pritaikykime juos:
+
+\begin{teig}
+  Tegu $AH$ trikampio $ABC$ aukštinė. Tuomet 
+  $$
+  h = \frac{a(\bb{b} - \bb{c}) + \bb{a}(b - c) + \bb{b}c -b\bb{c}}{2(\bb{b} - \bb{c})}.
+  $$
+\end{teig}
+
+\begin{proof}
+  Norėdami rasti $h$ išraišką, taško $H$ padėtį išreikšime dviem lygybėmis,
+  aprašančiomis jo priklausymą teisei einančiai per taškus $B$ ir $C$, bei
+  atkarpos $AH$ statmenumą atkarpai $BC$:
+  \begin{align*}
+    \frac{b - c}{\bb{b} -\bb{c}} &= \frac{h - b}{\bb{h} - \bb{b}}\\
+    \frac{a - h}{\bb{a} -\bb{h}} &=-\frac{b - c}{\bb{b} - \bb{c}}.
+  \end{align*}
+  Šias lygybes pertvarkome
+  \begin{align*}
+    \bb{h}(b - c) &= h(\bb{b} - \bb{c}) - \bb{b}c + b\bb{c} \\
+    \bb{h}(b - c) &= a(\bb{b} - \bb{c}) + \bb{a}(b - c) - h(\bb{b} - \bb{c}),
+  \end{align*}
+  ir sulyginę dešiniąsias puses randame norimą išraišką.
+\end{proof}
+
+Atkreipkite dėmesį, kad ši ne ypač simpatiška aukštinės pagrindo išraiška
+gerokai supaprastėja, jei neprarasdami bendrumo galime sutapatinti $A$ su
+kompleksinės plokštumos pradžia.
+
+\begin{teig}
+  Tegu $O$ apibrėžto apie trikampį $ABC$ apskritimo centras. Tuomet
+  $$
+  o = \frac{|a|^2(b-c) + |b|^2(c-a) + |c|^2(a-b)}{\bb{a}(b-c) + \bb{b}(c-a) +
+  \bb{c}(a-b)}
+  $$
+\end{teig}
+
+\begin{proof}
+  bla bla bla
+\end{proof}
+
+\begin{teig}
+  Tegu $H$ trikampio $ABC$ aukštinių susikirtimo taškas. Tuomet
+  $$
+  h = \frac{|a|^2(c-b) + |b|^2(a-c) + |c|^2(b-a) + a^2(\bb{c}-\bb{b}) +
+  b^2(\bb{a}-\bb{c}) + c^2(\bb{b}-\bb{a})}{\bb{a}(b-c) + \bb{b}(c-a) +
+  \bb{c}(a-b)}
+  $$
+\end{teig}
+
+\begin{proof}
+  bla bla bla
+\end{proof}
+
+\begin{teig}
+  Tegu $E$ tiesių einančių per taškus $A$ ir $B$ bei $C$ ir $D$ susikirtimo
+  taškas. Tuomet
+  $$
+  e = \frac{bla}{bla}
+  $$
+\end{teig}
+
+\begin{proof}
+  bla bla bla
+\end{proof}
+
+Apsiginklavę naujais teiginiais išspręsime keletą uždavinių.
+
+\begin{pav}
+  Ant trapecijos $ABCD$ pagrindo $AB$ parinktas taškas $F$, tenkinantis $DF =
+  CF$.  Tegul $E$ -- trapecijos įstrižainių susikirtimo taškas, o taškai $O_1$
+  ir $O_2$ -- apibrėžtų apie trikampius $ \Delta ADF$ ir $\Delta FBC$ apskritimų
+  centrai. Įrodykite, kad $ FE \bot O_1 O_2 $.
+\end{pav}
+
 \begin{sprendimas}
-Pastebėkime, kad taškas $x$ tenkina lygtį, todėl visi $ z \neq x$ tenkina $$\frac{z-x}{\overline{z}-\overline{x}}=e^{2i\theta}.$$ Kadangi $|z-x|=|\overline{z}-\overline{x}|$, todėl $|(z-x)/(\overline{z}-\overline{x})|=1$. Be to, $Arg (z-x) =\phi$, kur $\phi$ yra kampas, kurį sudaro tiesė ZX su $Re$ ašimi. Todėl $Arg ((z-x)/(\overline{z}-\overline{x})) =2\phi$. Vadinasi, 
-$$\frac{z-x}{\overline{z}-\overline{x}}=e^{2i\theta}$$ tada ir tik tada, kai $e^{2i\phi}=e^{2i\theta}$ $\Leftrightarrow 2\phi =2\theta + 2\pi n$, kažkokiam $n \in \mathbb{Z}.$ Paskutinė tapatybė yra ekvivalenti $\phi = \theta + \pi n$. Vadinasi, gavome, kad $z$ tenkina tiesės lygtį tada ir tik tada, kai $\phi = \theta$ arba $\phi = \theta + \pi$, bet antru atveju tai reiškia, kad vektorius $z-x$ yra paimtas priešinga kryptimi, todėl tiesės lygtis yra teisinga.
+  Taškas $F$ priklauso ir mus dominančiai atkarpai $EF$, ir trikampiams $ADF$
+  bei $FBC$, tad natūralu neprarandant bendrumo būtent jį bandyti sutapatinti su
+  kompleksinės plokštumos pradžia. Taip pat, trapeciją pasukime taip, kad jos
+  pagrindas sutaptų su realiųjų skaičių ašimi.
+
+  \begin{figure}[h]
+    \centering
+    \begin{asy}
+      size(300);
+      graph.xaxis("$\Re$");
+      graph.yaxis("$\Im$");
+
+      pair O=origin;
+      pair A=(-40, 0);
+      pair B=(25, 0);
+      pair C=(18, 24);
+      pair D=(-18, 24);
+      pair O1=circumcenter(A,D,O);
+      pair O2=circumcenter(C,B,O);
+      pair EE=extension(A,C,D,B);
+
+      dot(A*1.2, invisible);
+      dot(B*1.6, invisible);
+      dot(D*1.5, invisible);
+      dot(O1);
+      dot(O2);
+      dot(EE);
+
+      draw(A--B--C--D--A);
+      draw(D--O);
+      draw(C--O);
+      draw(A--C, dotted);
+      draw(D--B, dotted);
+
+      add(pathticks(D--O,2,0.5,0,75,red));
+      add(pathticks(C--O,2,0.5,0,75,red));
+
+      label("$A$",A,SW,blue);
+      label("$B$",B,SE,blue);
+      label("$C$",C,NE,blue);
+      label("$D$",D,NW,blue);
+      label("$F$",O,SW,blue);
+      label("$E$",EE,N,blue);
+      label("$O_1$",O1,W,blue);
+      label("$O_2$",O2,E,blue);
+    \end{asy}
+  \end{figure}
+
+Kadangi $DF$ lygi $CF$, tai taškai $D$ ir $C$ simetriški vienas kitam menamosios
+ašies atžvilgiu, ką galime elegantiškai užrašyti kaip $d = -\bb{c}$. Taip pat
+jau mokame išreikšti apie trikampius apibrėžtų apskritimų centrus, o jų
+išraiškos šiuo atveju bus gana paprastos, nes tašką $F$ atitinka kompleksinės
+plokštumos centras, o taškai $A$ ir $B$ tenkina $a = \bb{a}$, $b = \bb{b}$:
+\begin{align*}
+  o_1 &= \frac{ad(\bb{a}-\bb{d})}{\bb{a}d-a\bb{d}} = \frac{\bb{c}(a+c)}{\bb{c}+c},\\
+  o_2 &= \frac{bc(\bb{b}-\bb{c})}{\bb{b}c-b\bb{c}} = \frac{c(b+\bb{c})}{\bb{c}+c}.
+\end{align*}
+Taip pat jau mokame rasti ir tašką $E$ atitinkantį skaičių:
+$$
+e = \frac{a\bb{c}-bc}{a+\bb{c}-b-c}.
+$$
+Beliko įrodyti, kad $FE \bot O_1 O_2 $, tai yra
+$$
+\frac{o_1-o_2}{\bb{o_1}-\bb{o_2}} = -\frac{f-e}{\bb{f}-\bb{e}} = -
+\frac{e}{\bb{e}}.
+$$
+Bet šią lygybę jau nesudėtinga patikrinti įsistant gautas išraiškas.  TODO
+check. 
 \end{sprendimas}
 
+\subsection{Uždaviniai}
 
-
-
-\bigskip
-Dabar įrodysime vieną iš svarbesnių teoremų, padedančią aprašyti daugumą geometrinių taškų.
-
-\begin{thmnr}\textit{(Lygiagretumo ir statmenumo teorema)}\
 \begin{enumerate}
-\item Tiesė AB yra lygiagreti tiesei CD tada ir tik tada, kai $\frac{a - b}{\overline{a} -\overline{b}}=\frac{c - d}{\overline{c} - \overline{d}}$.
-\item Taškai A, B ir C priklauso vienai tiesei tada ir tik tada, kai $\frac{a - b}{\overline{a} -\overline{b}}=\frac{a-c}{\overline{a} - \overline{c}}$.
-\item Tiesė AB yra statmena tiesei CD tada ir tik tada, kai $\frac{a - b}{\overline{a} -\overline{b}}=-\frac{c - d}{\overline{c} - \overline{d}}$.
+  \item Kur dingo katino pinigai? Hey, hey, hey hey hey!
 \end{enumerate}
-\end{thmnr}
-\begin{sprendimas} Kad įrodytume pirmąją dalį, iš tiesės lygties nesunku pastebėti, kad tiesė $AB$ sudaro tokį pat kampą su $Re$ ašimi kaip ir tiesė $CD$ tada ir tik tada, jeigu tenkinama duota sąlyga. O tiesės yra lygiagrečios tada ir tik tada, kai jos sudaro tokį patį kampą su $Re$ ašimi (ar bet kuria kita tiese).
-
-Antroji dalis gana akivaizdžiai seka iš pirmosios teoremos dalies.
-
-Beliko įrodyti trečiąją dalį. Tarkime, kad $AB$ sudaro kampą $\theta$ su $Re$ ašimi, o $CD$ sudaro kampą $\phi$. Tada gauname, kad $\frac{a - b}{\overline{a} -\overline{b}}=-\frac{c - d}{\overline{c} - \overline{d}} \Leftrightarrow e^{2i\theta}=e^{i\pi}e^{2i\phi} \Leftrightarrow 2\theta = \pi + 2\phi + 2\pi n \Leftrightarrow \theta = \phi + \frac{\pi}{2} + \pi n $, kur $n$ - bet koks sveikas skaičius. Nagrinėdami paskutinę tapatybę matome, kad ji yra tenkinama tada ir tik tada, kai tiesės $AB$ ir $CD$ yra statmenos.
-\end{sprendimas}
-
-\begin{pavnr}
-Duotas trikampis $ABC$. Tegu $AH$ yra trikampio aukštinė. Tada $h=\frac{a(\overline{b}-\overline{c})+\overline{a}(b-c)+\overline{b}c-b\overline{c}}{2(\overline{b}-\overline{c})}.$
-\end{pavnr}
-\begin{sprendimas}
-Naudosimės lygiagretumo ir statmenumo teorema. $H$ priklauso tiesei $BC$, todėl $\frac{b - c}{\overline{b} -\overline{c}}=\frac{h-b}{\overline{h} - \overline{b}}$. Be to, $AH$ yra statmena $BC$, todėl $\frac{a - h}{\overline{a} -\overline{h}}=-\frac{b - c}{\overline{b} - \overline{c}}$. Iš pirmosios tapatybės gauname $\overline{h}(b-c)=h(\overline{b} - \overline{c}) - \overline{b}c+b\overline{c}$, o iš antrosios $\overline{h}(b-c)=a(\overline{b}-\overline{c})+\overline{a}(b-c)-h(\overline{b}-\overline{c})$. Sulyginę gauname išraišką $h(\overline{b} - \overline{c}) - \overline{b}c+b\overline{c}=a(\overline{b}-\overline{c})+\overline{a}(b-c)-h(\overline{b}-\overline{c})$, kurią sutvarkę gauname $h=\frac{a(\overline{b}-\overline{c})+\overline{a}(b-c)+\overline{b}c-b\overline{c}}{2(\overline{b}-\overline{c})}$.
-\end{sprendimas}
-
-Dažniausiai uždaviniuose išraiškas galima padaryti paprastesnėmis, pvz., neprarandant bendrumo tariant, kad $a=0$ arba kad trikampis $ABC$ yra ant vienetinio apskritimo, o tai duoda $|a|^2=a\overline{a}=b\overline{b}=c\overline{c}=1$.
-
-\begin{pavnr}
-Tegul $F$ yra taškas ant trapecijos $ABCD$ pagrindo $AB$, toks, kad $DF=CF$. Tegul E - trapecijos įstrižainių susikirtimo taškas, o taškai $O_1$ ir $O_2$ - apibrėžtų apie $ \Delta ADF$ ir $\Delta FBC$ apskritimų centrai. Įrodykite, kad $ FE \bot O_1 O_2 $.
-\end{pavnr}
-\begin{sprendimas}
-Raktas į šio uždavinio sprendimą yra teisingas koordinačių centro parinkimas. 
-Šiuo atveju, reiškiniai gražiai tvarkosi, jei koordinačių pradžios tašku pasirenkame tašką $F$. Tarkime, kad $Re$ (realiųjų skaičių ašis) yra statmena trapecijos pagrindams, o tada $d = \bar c ,$ nes $DF=CF$. Pastebime, jog tuomet taškai $a$ ir $b$ priklauso menamųjų skaičių ašiai $Im$, todėl gauname jog $ \bar a = - a $ bei $ \bar b = - b$.
-
-Suraskime $O_1$ bei $O_2$ taškus. Šie taškai yra kraštinių vidurio statmenų sankirtos, todėl, naudojantis tiesės lygiagretumo ir statmenumo teoremos formulėmis, randame
-$$ o_1 = \frac { ad( \bar a - \bar d) } { \bar a d - a \bar d } = \frac {\bar c ( a + c) } { \bar c + c },$$  
-$$  o_2 = \frac { bc( \bar b - \bar c) } { \bar b c - b \bar c } = \frac { c( b + \bar c) } { \bar c + c }.$$
-
-Liko surasti tašką $E$. Jį apibrėšime per dvi lygtis, naudojantis ta pačia teorema. Taškai $A, E, C$ bei $B, E, D$ priklauso vienai tiesei, todėl gauname
-$$ \frac { a- c} {\bar a-\bar c} = \frac {e-a}{ \bar e - \bar a},$$
-$$ \frac { b-d} {\bar b-\bar d} = \frac {e-b}{ \bar e - \bar b}.$$
-\\ Išsireiškę iš šių dviejų lygčių  $ \bar e$ ir juos sulyginę, gauname
-\\ $$ e = \frac { a \bar c - bc}{ a+ \bar c -b-c}.$$
-Galiausiai liko įrodyti, kad $FE \bot O_1 O_2 $. Vėl naudojamės ta pačia teorema ir gauname, kad tai ekvivalentu
- $$  \frac {o_1 - o_2} { \bar o_1 - \bar o_2}= - \frac { f-e}{\bar f - \bar e}.$$
-Šią lygybę įrodome įsistatę gautas išraiškas.
-\end{sprendimas}
-
 
 \section{Vienetinis apskritimas}
 
 Kaip pamatysime šio skyriaus teoremoje, taškai ant vienetinio apskritimo turi daug gražių savybių, kurios supaprastina daug skaičiavimų. Todėl uždaviniuose yra labai svarbu protingai pasirinkti apskritimą, kurį laikysime vienetiniu. Pasirinktas apskritimas nebūtinai turi būti prasmingas iš uždavinio sąlygos perspektyvos. Vienetiniu apskritimu galima pasirinkti bet kurio trikampio apibrėžtinį (ar įbrėžtinį) apskritimą, o trikampį gali sudaryti bet kurie 3 taškai.
 
-\begin{thmnr}  \textit{(Pagrindinė vienetinio apskritimo teorema)} Jei $A, B$ priklauso vienetiniam apskritimui, tada:\
-\begin{enumerate}
-\item $\frac{a - b}{\overline{a} -\overline{b}}=-ab$.
-\item Jei $X$ priklauso tiesei AB, tai $\overline{x}=\frac{a + b - x}{ab}$.
-\item Jei $C, D$ irgi priklauso vienetiniam apskritimui, tada $X$ yra tiesių AB ir CD susikirtimo taškas, tai $x=\frac{ab(c+d) - cd(a+b)}{ab - cd}$.
-\end{enumerate}
+\begin{thmnr}[Pagrindinė vienetinio apskritimo teorema] Tegu $A$ ir $B$
+  priklauso vienetiniam apskritimui. Tada:
+
+  \begin{enumerate}
+    \item $\frac{a - b}{\bb{a} -\bb{b}}=-ab$.
+    \item Jei $C$ priklauso tiesei einančiai per taškus $A$ ir $B$, tai
+      $\bb{c}=\frac{a + b - x}{ab}$.
+    \item Jei $C, D$ irgi priklauso vienetiniam apskritimui, tai tiesių einančių
+      per taškus $A$ ir $B$ bei $C$ ir $D$ susikirtimo taškas $E$ tenkina
+      $e=\frac{ab(c+d) - cd(a+b)}{ab - cd}$.
+  \end{enumerate}
 \end{thmnr}
-\begin{sprendimas}
+
+\begin{proof}
 \begin{enumerate} 
-\item Naudojamės savybe, kad ant vienetinio apskritimo taškai tenkina $|a|^2=a\overline{a}=1$ ir gauname $\frac{a - b}{\overline{a} -\overline{b}}=\frac{a - b}{\frac{1}{a} -\frac{1}{b}}=-ab$.
-\item Naudojamės tiesių lygiagretumo ir statmenumo teorema. Taškas $X$ priklauso tiesei $AB$ tada ir tik tada, kai $\frac{a-x}{\overline{a}-\overline{x}}=\frac{a-b}{\overline{a}-\overline{b}}$. Panaudoję $\frac{a - b}{\overline{a} -\overline{b}}=-ab$ ir suprastinę išraišką, gauname $\overline{x}=\frac{a + b - x}{ab}$.
-\item Naudojamės šios teoremos antrąja dalimi. Gauname $\overline{x}=\frac{a + b - x}{ab}$ ir $\overline{x}=\frac{c+ d - x}{cd}$. Sulyginę išraiškas gauname $x=\frac{ab(c+d) - cd(a+b)}{ab - cd}$.
+\item Naudojamės savybe, kad ant vienetinio apskritimo taškai tenkina $|a|^2=a\bb{a}=1$ ir gauname $\frac{a - b}{\bb{a} -\bb{b}}=\frac{a - b}{\frac{1}{a} -\frac{1}{b}}=-ab$.
+\item Naudojamės tiesių lygiagretumo ir statmenumo teorema. Taškas $X$ priklauso tiesei $AB$ tada ir tik tada, kai $\frac{a-x}{\bb{a}-\bb{x}}=\frac{a-b}{\bb{a}-\bb{b}}$. Panaudoję $\frac{a - b}{\bb{a} -\bb{b}}=-ab$ ir suprastinę išraišką, gauname $\bb{x}=\frac{a + b - x}{ab}$.
+\item Naudojamės šios teoremos antrąja dalimi. Gauname $\bb{x}=\frac{a + b - x}{ab}$ ir $\bb{x}=\frac{c+ d - x}{cd}$. Sulyginę išraiškas gauname $x=\frac{ab(c+d) - cd(a+b)}{ab - cd}$.
 \end{enumerate}
-\end{sprendimas}
+\end{proof}
 
 Jeigu norime rasti liestinės prie $A$ ir $CD$ susikirtimo tašką, paprastas, bet matematiškai negriežtas būdas yra įsistatyti $b=a$ į teoremos paskutinės dalies formulę ir gauti $x=\frac{a^2(c+d) - 2acd}{a^2 - cd}$. Ieškodami liestinių prie $A$ ir $C$ susikirtimo taško, įsistatome $b=a, d=c$ ir gauname $x=\frac{2ac}{a+c}$. Šių formulių griežti įrodymai yra panašūs pateiktam įrodymui.
 \bigskip
@@ -796,10 +986,10 @@ Duotas apie smailųjį trikampį $ABC$ apibrėžtas apskritimas, kurio liestinė
 \end{pavnr}
 \begin{sprendimas}
 Naudodamiesi pagrindinę vienetinio apskritimo teorema, gauname, kad $ x= \frac {2ab}{a+b}$. Pasižymime $\theta = \angle ACX$ ir $\phi = \angle BCM$. Toliau išreiškiame kampus:
-$$ e^{ 2i\theta} = \frac { a-c}{ \bar a - \bar c} : \frac {x-c}{\bar x - \bar c}=
+$$ e^{ 2i\theta} = \frac { a-c}{ \bb a - \bb c} : \frac {x-c}{\bb x - \bb c}=
 - \frac { 2ab -ac-bc}{2bc - ab- b^2}.$$
 Naudojame $m = \frac {a+b}{2}$ ir analogiškai randame:
-$$ e^{2i\phi} = \frac { m-c}{ \bar m - \bar c} : \frac {b-c}{\bar b - \bar c}=
+$$ e^{2i\phi} = \frac { m-c}{ \bb m - \bb c} : \frac {b-c}{\bb b - \bb c}=
 - \frac { 2ab -ac-bc}{2bc - ab- b^2}.$$
 Taigi gauname $ e^{ 2i\theta} = e^{2i\phi}$. Iš to seka, kad arba $ \theta = \pi + \phi$, kas nėra įmanoma, nes $\Delta abc$ yra smailusis trikampis, arba $\theta =\phi$, ką mums ir reikėjo įrodyti.
 
@@ -818,8 +1008,8 @@ Duotas iškilas apibrėžtinis penkiakampis $AXYZB$ toks, kad $AB$ yra apibrėž
 \begin{sprendimas}
   Neprarasdami bendrumo tarkime, kad apie penkiakampį apibrėžtasis apskritimas yra vienetinis. Tuomet $b = -a$, nes $ab$ yra skersmuo. 
 
-$P$ priklauso tiesei $AX$, todėl naudodamiesi pagrindine vienetinio apskritimo teorema, gauname $$\overline{p}=\frac{a+x-p}{ax}.$$ Tiesė $PY$ yra statmena tiesei $AX$, todėl iš tiesių lygiagretumo ir statmenumo teoremos gauname $$\frac{p-y}{\overline{p}-\overline{y}}=-\frac{a-x}{\overline{a}-\overline{x}} (=ax).$$ 
-Įsistatę $\overline{p}$ į paskutinę tapatybę gauname 
+$P$ priklauso tiesei $AX$, todėl naudodamiesi pagrindine vienetinio apskritimo teorema, gauname $$\bb{p}=\frac{a+x-p}{ax}.$$ Tiesė $PY$ yra statmena tiesei $AX$, todėl iš tiesių lygiagretumo ir statmenumo teoremos gauname $$\frac{p-y}{\bb{p}-\bb{y}}=-\frac{a-x}{\bb{a}-\bb{x}} (=ax).$$ 
+Įsistatę $\bb{p}$ į paskutinę tapatybę gauname 
 $$p = \frac {1}{2}( a+x+y- \frac {ax}{y}).$$
 Analogiškai randame
 $$q = \frac {1}{2}( a+z+y- \frac {az}{y}),$$ 
@@ -827,7 +1017,7 @@ $$r = \frac {1}{2}( -a+x+y- \frac {ax}{y}),$$
 $$s = \frac {1}{2}( -a+z+y- \frac {az}{y}).$$
 
 Iš tiesų, kompleksiniais skaičiais įrodyti kampų lygybes yra ganėtinai sudėtinga, kai kampai nėra lygūs. Šiuo atveju skaičiavimus palengvina Euklidinės geometrijos panaudojimas: pagal įbrėžtinius kampus turime $\angle XOZ = 2\angle XAZ$, todėl mums lieka įrodyti, jog  $\angle XAZ=\theta$ yra lygus kampui tarp tiesių $PQ$ ir $RS$, kurį pažymėkime $\phi$. Šie kampai yra lygūs tada ir tik tada, kai tenkinama 
-$$e^{2i\theta}=\frac {x-a} {\bar x - \bar a} : \frac{z-a}{\bar z - \bar a} = \frac{p-r}{\bar p - \bar r} : \frac{q-s}{\bar q - \bar s}=e^{2i\phi}.$$
+$$e^{2i\theta}=\frac {x-a} {\bb x - \bb a} : \frac{z-a}{\bb z - \bb a} = \frac{p-r}{\bb p - \bb r} : \frac{q-s}{\bb q - \bb s}=e^{2i\phi}.$$
 Įsistačius $p, q, r, s$ žinomas išraiškas per $a, x, y, z,$ gauname, kad lygybė teisinga, todėl uždavinys išspęstas.
 \end{sprendimas}
      
@@ -846,12 +1036,12 @@ Tegu apie trikampį $ABC$ apibrėžtas apskritimas yra vienetinis. Išspręsime 
 Naudodami tai, kad $BF$ statmena $CA$, ir tai, kad $F$ yra ant vienetinio apskritimo, gauname
 $$ f'= - \frac {ac}{b}.$$
 Iš pagrindinės vienetinio apskritimo teoremos, gauname 
-$$\bar d' = \frac {c+a-d}{ca}.$$
+$$\bb d' = \frac {c+a-d}{ca}.$$
 Naudodami tai, kad $FD$ statmena $BC$, randame
 $$ d= b+ \frac {c}{b}(b-a).$$
 Liko įrodyti, kad $AB=BD$, tad įsistatę $d$ išraišką, gauname:
 
-$$ (d-b)( \bar d - \bar b)=( b+ \frac {c}{b}(b-a)-b)(( \bar b+ \frac {\bar c}{\bar b}(\bar b-\bar a)-\bar b)=(a-b)( \bar a - \bar b).$$
+$$ (d-b)( \bb d - \bb b)=( b+ \frac {c}{b}(b-a)-b)(( \bb b+ \frac {\bb c}{\bb b}(\bb b-\bb a)-\bb b)=(a-b)( \bb a - \bb b).$$
 \end{sprendimas}
 
 
@@ -865,22 +1055,22 @@ Tegul $O$ yra apie trikampį $ABC$ apibrėžto apskritimo centras. Taškai $P$ i
 \begin{sprendimas}
 
 Tegu apie $\bigtriangleup ABC$ apibrėžtas apskritimas yra vienetinis. Kadangi $P$ ir $Q$ priklauso atitinkamai $CA$ ir $AB$, tai
-$$\overline{p}=\frac{a+c-p}{ac},$$
-$$\overline{q}=\frac{a+b-q}{ab}.$$
+$$\bb{p}=\frac{a+c-p}{ac},$$
+$$\bb{q}=\frac{a+b-q}{ab}.$$
 Mums reikia įrodyti:
-$$(p-o)(\overline{p-o})=(q-o)(\overline{q-o}) \Leftrightarrow p\overline{p}=q\overline{q} \Leftrightarrow \frac{p(a+c-p)}{ac}=\frac{q(a+b-q)}{ab}.$$
+$$(p-o)(\bb{p-o})=(q-o)(\bb{q-o}) \Leftrightarrow p\bb{p}=q\bb{q} \Leftrightarrow \frac{p(a+c-p)}{ac}=\frac{q(a+b-q)}{ab}.$$
 
 Liko neišnaudota viena sąlyga - tiesė $PQ$ liečia apskritimą $\Gamma$. Galima bandyti susirasti apskritimo centrą ir įrodyti, kad statmuo iš $M$ tiesei $PQ$ eina per $\Gamma$ centrą, arba naudotis tuo, kad $\angle QMK=\angle MLK$ tada ir tik tada, kai tiesė $PQ$ yra $\Gamma$ liestinė taške $M$. Pasižymime $\omega=\angle QMK=\angle MLK$, tada:
-$$\frac{m-q}{|m-q|}\omega=\frac{m-k}{|m-k|} \Rightarrow \frac{m-q}{\overline{m}-\overline{q}}\omega^2=\frac{m-k}{\overline{m}-\overline{k}} \Leftrightarrow \omega^2=\frac{m-k}{\overline{m}-\overline{k}} \frac{\overline{m}-\overline{q}}{m-q}.$$
+$$\frac{m-q}{|m-q|}\omega=\frac{m-k}{|m-k|} \Rightarrow \frac{m-q}{\bb{m}-\bb{q}}\omega^2=\frac{m-k}{\bb{m}-\bb{k}} \Leftrightarrow \omega^2=\frac{m-k}{\bb{m}-\bb{k}} \frac{\bb{m}-\bb{q}}{m-q}.$$
 Analogiškai ir su m, l, k:
-$$\frac{l-m}{|l-m|}\omega=\frac{l-k}{|l-k|} \Rightarrow  \omega^2=\frac{l-m}{\overline{l}-\overline{m}}\frac{\overline{l}-\overline{k}}{l-k}$$
+$$\frac{l-m}{|l-m|}\omega=\frac{l-k}{|l-k|} \Rightarrow  \omega^2=\frac{l-m}{\bb{l}-\bb{m}}\frac{\bb{l}-\bb{k}}{l-k}$$
 Sulyginame reiškinius, įsistatome m, k ir l reikšmes, tada p ir q jungtinius:
 
 \begin{equation*}
- \frac{m-k}{\overline{m}-\overline{k}} \frac{\overline{m}-\overline{q}}{m-q}=\frac{l-m}{\overline{l}-\overline{m}}\frac{\overline{l}-\overline{k}}{l-k} \Leftrightarrow 
+ \frac{m-k}{\bb{m}-\bb{k}} \frac{\bb{m}-\bb{q}}{m-q}=\frac{l-m}{\bb{l}-\bb{m}}\frac{\bb{l}-\bb{k}}{l-k} \Leftrightarrow 
 \end{equation*}
 \begin{equation*}
- \Leftrightarrow (q-b)(\overline{p}-\overline{q})(c-p)(\overline{c}+\overline{q}-\overline{b}-\overline{p})=(p-q)(\overline{q}-\overline{b})(c+q-b-p)(\overline{c}-\overline{p}) \Leftrightarrow
+ \Leftrightarrow (q-b)(\bb{p}-\bb{q})(c-p)(\bb{c}+\bb{q}-\bb{b}-\bb{p})=(p-q)(\bb{q}-\bb{b})(c+q-b-p)(\bb{c}-\bb{p}) \Leftrightarrow
 \end{equation*}
 \begin{equation*}
 \Leftrightarrow (q-b)(\frac{ab-ac+qc-pb}{abc})(c-p)(\frac{pb-qc}{abc})=(p-q)(\frac{b-q}{ab})(\frac{p-c}{ac})(c+q-b-p),
@@ -906,21 +1096,21 @@ Trikampio kraštinės yra įbrėžto trikampio liestinės, todėl turime, jog:
 $$ a =\frac{2ef}{e+f},$$
 $$ b=\frac{2df}{d+f},$$
 $$ c=\frac{2ed}{e+d}.$$
-Be to, galioja lygybės $\bar{d}= \frac{1}{d}, \bar{e}= \frac{1}{e}, \bar{f}= \frac{1}{f}$, nes taškai $d, e, f$ priklauso vienetiniam apskritimui. Iš to gauname
-$$ \bar a =\frac{2}{e+f}, \bar b=\frac{2}{d+f}, \bar c=\frac{2}{e+d}.$$
+Be to, galioja lygybės $\bb{d}= \frac{1}{d}, \bb{e}= \frac{1}{e}, \bb{f}= \frac{1}{f}$, nes taškai $d, e, f$ priklauso vienetiniam apskritimui. Iš to gauname
+$$ \bb a =\frac{2}{e+f}, \bb b=\frac{2}{d+f}, \bb c=\frac{2}{e+d}.$$
 Akivaizdu, kad
 $$ m=\frac{a+b}{2}, \phantom{a} n=\frac{c+b}{2}.$$
 Taškas $X$ priklauso tiesei $IC$:
-$$ \frac{c-i}{\bar{c}-\overline{i}}=\frac{x-i}{\bar{x} - \overline{i}} {\phantom{a}}\Leftrightarrow \phantom{a} \bar{x}= \frac{\bar{c}}{c}\cdot  x $$ 
+$$ \frac{c-i}{\bb{c}-\bb{i}}=\frac{x-i}{\bb{x} - \bb{i}} {\phantom{a}}\Leftrightarrow \phantom{a} \bb{x}= \frac{\bb{c}}{c}\cdot  x $$ 
 Taškas $X$ taip pat priklauso tiesei $FD$, todėl turime:
-$$\frac{f-d}{\bar{f}-\bar{d}}=\frac{x-f}{\bar{x} - \bar{f}} \Leftrightarrow \bar{x}= -\frac{1}{fd}\cdot  (x-f)+\bar{f} $$
-Sulyginame abi $\bar{x}$ išraiškas ir gauname, kad 
+$$\frac{f-d}{\bb{f}-\bb{d}}=\frac{x-f}{\bb{x} - \bb{f}} \Leftrightarrow \bb{x}= -\frac{1}{fd}\cdot  (x-f)+\bb{f} $$
+Sulyginame abi $\bb{x}$ išraiškas ir gauname, kad 
 $$ x = e \cdot \frac{d+e}{f+e}.$$
 Liko parodyti, jog gautas taškas $X$ priklauso tiesei $NM$, todėl naudojamės tiesių lygiagretumo ir statmenumo teorema:
-$$ \frac{m-n}{\bar{m}-\bar{n}}=\frac{x-n}{\bar{x} - \bar{n}}.$$
+$$ \frac{m-n}{\bb{m}-\bb{n}}=\frac{x-n}{\bb{x} - \bb{n}}.$$
 Paskutinę lygybę įrodome įsistatę $m$, $n$ ir $x$ išraiškas per $d, e$ ir $f$.
 
-Dalyje (b) tereikia įrodyti, jog galioja lygybė: $\frac{a-x}{\bar{a}-\bar{x}}= - \frac{x-c}{\bar{x} - \bar{c}}$, ką nesunkiai padarome įsistatę reikiamas išraiškas.
+Dalyje (b) tereikia įrodyti, jog galioja lygybė: $\frac{a-x}{\bb{a}-\bb{x}}= - \frac{x-c}{\bb{x} - \bb{c}}$, ką nesunkiai padarome įsistatę reikiamas išraiškas.
 \end{sprendimas}
 
 
@@ -940,14 +1130,14 @@ taškas, kad $AD = AE$ ir $CB = CE$. $M$ yra apskritimo $k$, apibrėžto apie tr
 centras. Apskritimas $k$ kerta tiesę $AC$ taškuose $E$ ir $F$ . Įrodykite, kad tiesės $FM, AD$ ir $BC$ kertasi viename taške.
 \end{pavnr}
 \begin{sprendimas}
-Tegu apie $B, D, E$ apibrėžtas apskritimas yra vienetinis apskritimas kompleksinėje plokštumoje, tada $F$ irgi priklauso šiam apskritimui, o $m=0$. Kadangi $A\in EF$, iš šeštos teoremos gauname: $\overline{a}=\frac{e+f-a}{ef}$. $AE = AD \Leftrightarrow |a-e|=|a-d| \Leftrightarrow (a-e)\overline{(a-e)}=(a-d)\overline{(a-d)}$. Iš šių lygčių randame
+Tegu apie $B, D, E$ apibrėžtas apskritimas yra vienetinis apskritimas kompleksinėje plokštumoje, tada $F$ irgi priklauso šiam apskritimui, o $m=0$. Kadangi $A\in EF$, iš šeštos teoremos gauname: $\bb{a}=\frac{e+f-a}{ef}$. $AE = AD \Leftrightarrow |a-e|=|a-d| \Leftrightarrow (a-e)\bb{(a-e)}=(a-d)\bb{(a-d)}$. Iš šių lygčių randame
 $$a=\frac{d(e+f)}{d+f}.$$
 Analogiškai randame
 $$c=\frac{b(e+f)}{b+f}.$$
 Kadangi $A, B, C, D$ priklauso vienam apskritimui, atlikę prastinimus gauname
-$$\frac{a-c}{b-c}:\frac{a-d}{b-d}\in \mathbb{R} \Leftrightarrow \frac{a-c}{b-c}:\frac{a-d}{b-d}= \overline{\bigg(\frac{a-c}{b-c}:\frac{a-d}{b-d}\bigg)} \Leftrightarrow bed=f^3.$$
-Tarkime, kad $FM$ ir $AD$ kertasi taške $x_1$, o $FM$ ir $BC$ taške $x_2$. Kadangi $X_1, X_2 \in FM$, tai iš tiesių lygiagretumo ir statmenumo teoremos gauname $\frac{x_i-m}{(\overline{x_i}-\overline{m})}=\frac{f-m}{(\overline{f}-\overline{m})} \Leftrightarrow          \overline{x_i}=\frac{x_i}{f^2}$ ($i \in \{1, 2\})$.
-Kadangi $X_1 \in AD$, gauname $\frac{x_1-d}{(\overline{x_1}-\overline{d})}=\frac{a-d}{(\overline{a}-\overline{d})} \Rightarrow x_1=\frac{df^2(e+f)}{(f^3+d^2e)}$,
+$$\frac{a-c}{b-c}:\frac{a-d}{b-d}\in \mathbb{R} \Leftrightarrow \frac{a-c}{b-c}:\frac{a-d}{b-d}= \bb{\bigg(\frac{a-c}{b-c}:\frac{a-d}{b-d}\bigg)} \Leftrightarrow bed=f^3.$$
+Tarkime, kad $FM$ ir $AD$ kertasi taške $x_1$, o $FM$ ir $BC$ taške $x_2$. Kadangi $X_1, X_2 \in FM$, tai iš tiesių lygiagretumo ir statmenumo teoremos gauname $\frac{x_i-m}{(\bb{x_i}-\bb{m})}=\frac{f-m}{(\bb{f}-\bb{m})} \Leftrightarrow          \bb{x_i}=\frac{x_i}{f^2}$ ($i \in \{1, 2\})$.
+Kadangi $X_1 \in AD$, gauname $\frac{x_1-d}{(\bb{x_1}-\bb{d})}=\frac{a-d}{(\bb{a}-\bb{d})} \Rightarrow x_1=\frac{df^2(e+f)}{(f^3+d^2e)}$,
 analogiškai $x_2=\frac{bf^2(e+f)}{(f^3+b^2e)}$.
 Iš čia $bed=f^3 \Rightarrow x_1=x_2.$
 \end{sprendimas}
@@ -971,17 +1161,17 @@ Spręsdami geometrinius uždavinius kompleksiniais skaičiais, dažnai turime pe
 Pažymime tiesių $AD$ ir $CK$ susikirtimo tašką $G$, o $\angle ACD = 2\alpha$. Tada $\angle KEC=3(45^{\circ}-\alpha).$ Sąlygas, kad $AB=AC$ ir kampas $BEK=45^\circ$, išnaudosime pamatę, kad kampas $ADC=90^\circ$ ir tuo, kad $G$ yra pusiaukampinių susikirtimo taškas. Todėl spręsdami uždavinį, tašką $B$ galime pamiršti, o suradę $\alpha$ reikšmes, nesunkiai surasime ir ieškomojo kampo reikšmes.
 
 Tegu įbrėžtinis į trikampį $ADC$ apskritimas yra vienetinis ir liečia kraštines $DA, AC, CD$  taškuose $P, Q$ ir $R$. Pasižymime $\phi=e^{i45^{\circ}}$ ir $\omega=e^{i\alpha}$. Tada $r=p\phi^2$, nes $\angle PKR=90^{\circ},$ o taip yra dėl to, kad $PKRD$ yra kvadratas.
-Kadangi $G$ priklauso liestinei taške $P$, tai $\overline{g}=\frac{2p-g}{p^2}$, ir $G\in CK$, todėl $\frac{c}{\overline{c}}=\frac{g}{\overline{g}}$. Be to, $c=\frac{2pq\phi^2}{p\phi^2+q}$, tai
+Kadangi $G$ priklauso liestinei taške $P$, tai $\bb{g}=\frac{2p-g}{p^2}$, ir $G\in CK$, todėl $\frac{c}{\bb{c}}=\frac{g}{\bb{g}}$. Be to, $c=\frac{2pq\phi^2}{p\phi^2+q}$, tai
 $$g=\frac{2pq\phi ^2}{p+q\phi^2}.$$
-Kadangi $E$ priklauso liestinei taške $Q$, tai $\overline{e}=\frac{2q-e}{q^2},$ ir $\angle KEQ=3(45^{\circ}-\alpha) \Rightarrow  \frac{e}{\overline{e}}\frac{\phi^6}{\omega^6}= \frac{e-q}{\overline{e}-\overline{q}}$ ir $\phi^4=-1$, tai
+Kadangi $E$ priklauso liestinei taške $Q$, tai $\bb{e}=\frac{2q-e}{q^2},$ ir $\angle KEQ=3(45^{\circ}-\alpha) \Rightarrow  \frac{e}{\bb{e}}\frac{\phi^6}{\omega^6}= \frac{e-q}{\bb{e}-\bb{q}}$ ir $\phi^4=-1$, tai
 $$e=\frac{2q\omega^6}{\omega^6 +\phi ^2}.$$
 \begin{equation*}
-\angle GEK = 45^{\circ} \Rightarrow \frac{e-g}{\overline{e}-\overline{g}}\phi^2=\frac{e}{\overline{e}}.\tag{*}
+\angle GEK = 45^{\circ} \Rightarrow \frac{e-g}{\bb{e}-\bb{g}}\phi^2=\frac{e}{\bb{e}}.\tag{*}
 \end{equation*}
 Apskaičiuojame:
-$$\frac{e}{\overline{e}}= \frac{\omega^6q^2}{\phi^2}$$
+$$\frac{e}{\bb{e}}= \frac{\omega^6q^2}{\phi^2}$$
 $$\frac{1}{2}(e-g)=\frac{q(q\omega^6\phi^2 +p\omega^6 -p\omega^6\phi^2 +p)}{(\omega^6+\phi^2)(p +q\phi^2)}$$
-$$\frac{1}{2}(\overline{e}-\overline{g})=\frac{p\phi^2 -q\omega^6 -q\phi^2 - q}{q(\omega^6+\phi^2)(p +q\phi^2)}.$$
+$$\frac{1}{2}(\bb{e}-\bb{g})=\frac{p\phi^2 -q\omega^6 -q\phi^2 - q}{q(\omega^6+\phi^2)(p +q\phi^2)}.$$
 Įsistatome į (*) ir suprastinę gauname:
 \begin{equation*}
 (q\omega^6 -p)(\omega^6+1)=0. \tag{**}
@@ -995,6 +1185,7 @@ Matome, kad tinka tik viena $\alpha$ reikšmė, kai $4\alpha=90^{\circ}$, tad ie
 
 Kadangi iš pradinių sąlygų gavome (**), tai dar nereiškia, kad abu sprendiniai tenkina pradinę sąlygą, todėl turime juos abu įsistatyti ir patikrinti, ar trikampiai, tenkinantys visas sąlygas, egzistuoja. Galima tarti, kad $\angle CAB= 60^{\circ},90^{\circ}$ ir parodyti, kad $\angle BEK =45^{\circ}$.
 \end{sprendimas}
+
 
 
 
@@ -1033,7 +1224,7 @@ Neprarasdami bendrumo tarkime, kad $a=e^{i\theta_a}, b=e^{i\theta_b}, c=e^{i\the
 \item Tada $-uv=e^{i\frac{1}{2}(\theta_a+\theta_b)}, -vw=e^{i\frac{1}{2}(\theta_b+\theta_c)}, -wu=e^{i(\frac{1}{2}(\theta_a+\theta_b)+\pi)}$ ir yra atitinkamų lankų vidurio taškai. Pastebėkime, kad paskutinio nario laipsnyje narys $i\pi$ yra neatsitiktinai.
 \item Pažymėkime $p_C=-uv$. Įrodysime, kad taškas $I$ priklauso pusiaukampinei $P_CC$, analogiškai jis turės priklausyti ir kitoms dviem pusiaukampinėms, todėl $I$ bus jų susikirtimo taškas, kuris ir yra įbrėžtinio apskritimo centras.
 
-Mums reikia įrodyti, kad taškas $i=-(uv+vw+wu)$ priklauso tiesei $P_CC$. Iš tiesių lygiagretumo ir statmenumo teoremos gauname, kad tai yra ekvivalentu $$\frac{c-i}{\overline c - \overline i}=\frac{c-p_C}{\overline {c} - \overline {p_C}}.$$
+Mums reikia įrodyti, kad taškas $i=-(uv+vw+wu)$ priklauso tiesei $P_CC$. Iš tiesių lygiagretumo ir statmenumo teoremos gauname, kad tai yra ekvivalentu $$\frac{c-i}{\bb c - \bb i}=\frac{c-p_C}{\bb {c} - \bb {p_C}}.$$
 Įsistatome reikšmes $i=-(uv+vw+wu), p_C=-uv, c=w^2$, nepamirštame, kad $u, v, w$ visi yra ant vienetinio apskritimo ir įrodome, kad lygybė yra teisinga.
 \end{enumerate}
 \end{sprendimas}
@@ -1060,7 +1251,7 @@ Kadangi $K$ yra stygų $MN$ ir $AB$ susikirtimo taškas, tai tašką $K$ randame
 $$k = \frac{ x^2yz(x^2+y^2)+ x^2 y^2 (xy+xz)}{ x^2 yz - x^2 y^2},$$
 $\phantom{a}$ 
 Galiausiai, naudojant tiesių lygiagretumo ir statmenumo teoremą, įrodome, kad $KO$ yra statmena $AC$:
-$$\frac{k-o}{\overline k - \overline o}  = - \frac{ x^2 - z^2}{\overline x^2 - \overline z^2},$$
+$$\frac{k-o}{\bb k - \bb o}  = - \frac{ x^2 - z^2}{\bb x^2 - \bb z^2},$$
 Suprastinę gauname, kad abi pusės lygios $x^2 z^2$. Taigi, gavome būtent tai, ką reikėjo įrodyti.
 \end{sprendimas}
 
@@ -1082,7 +1273,7 @@ Tegu $\Gamma$ yra vienetinis apskritimas kompleksinėje plokštumoje. Naudojamė
 
 Tegu $AF$ kerta $\Gamma$ taške $H\ne A$. Tada $\angle BAH =\angle EAC =\alpha$, pažymime $\phi=e^{i\alpha}$. Tuomet $\frac{h-a}{|h-a|}\phi=\frac{b-a}{|b-a|}.$ Pakėlę kvadratu ir pasinaudoję tiesių lygiagretumo ir statmenumo teorema, gauname $h=\frac{v^2}{\phi^2}$. Analogiškai randame $e=\phi^2w^2$.
 
-Tegu $EI$ kerta $\Gamma$ taške $X \ne E$. Iš tiesių lygiagretumo ir statmenumo teoremos gauname $\frac{e-x}{\overline{e}-\overline{x}}=\frac{e-i}{\overline{e}-\overline{i}}$ ir kadangi $x\overline{x}=1$, tai 
+Tegu $EI$ kerta $\Gamma$ taške $X \ne E$. Iš tiesių lygiagretumo ir statmenumo teoremos gauname $\frac{e-x}{\bb{e}-\bb{x}}=\frac{e-i}{\bb{e}-\bb{i}}$ ir kadangi $x\bb{x}=1$, tai 
 $$x=-uvw\frac{w^2\phi ^2 +uv+vw+wu}{uvw +w^2\phi ^2(u+v+w)}.$$
 
 Prisiminę tiesių lygiagretumo ir statmenumo teoremą, randame 
@@ -1120,7 +1311,7 @@ $$o=\frac{2pqr(p+q+r)}{(p+q)(q+r)(r+p)}.$$
 \begin{sprendimas}
 \begin{enumerate}
 \item Ši dalis yra analogiška pagrindinei vienetinio apskritimo teoremos daliai.
-\item Pastebėkime, kad $AH$ yra lygiagreti $IP$, nes jos abi yra statmenos $BC$. Vadinasi $\frac{a-h}{\overline a-\overline h}=\frac{i-p}{\overline i-\overline p}.$ Naudojamės $i=0$ ir suprastinę gauname $$\overline {h}= \frac{2}{q+r} + \frac{1}{p^2}(h-\frac{2qr}{q+r}).$$ Analogiškai $BH$ lygiagreti $IQ$, todėl $$\overline {h}= \frac{2}{r+p} + \frac{1}{q^2}(h-\frac{2rp}{r+p}).$$
+\item Pastebėkime, kad $AH$ yra lygiagreti $IP$, nes jos abi yra statmenos $BC$. Vadinasi $\frac{a-h}{\bb a-\bb h}=\frac{i-p}{\bb i-\bb p}.$ Naudojamės $i=0$ ir suprastinę gauname $$\bb {h}= \frac{2}{q+r} + \frac{1}{p^2}(h-\frac{2qr}{q+r}).$$ Analogiškai $BH$ lygiagreti $IQ$, todėl $$\bb {h}= \frac{2}{r+p} + \frac{1}{q^2}(h-\frac{2rp}{r+p}).$$
 Sulyginę ir suprastinę gauname $$h=\frac{2(p^2q^2 + q^2r^2 + r^2p^2 + pqr(p + q+ r))}{(p+q)(q+r)(r+p)}.$$
 \item Naudojamės formule $h+2o=a+b+c$, kuri ekvivalenti $o=\frac{a+b+c-h}{2},$ įsistatome žinomas $a, b, c, h$ reikšmes ir suprastinę gauname
 $$o=\frac{2pqr(p+q+r)}{(p+q)(q+r)(r+p)}.$$
@@ -1150,7 +1341,7 @@ Naudodami įbrėžtinio vienetinio apskritimo teoremą ir $(*)$ gauname:
 $$h=\frac{2(p^2(q^2 + r^2) + q^2r^2  + pqr(p + q+ r))}{(p+q)(q+r)(r+p)}$$
 $$=\frac{2(p^2(-rq) + q^2r^2  + pqr(p + q+ r))}{(p+q)(q+r)(r+p)}=\frac{2qr(pq +qr+rp)}{(p+q)(q+r)(r+p)}.$$
 Žinome, kad $\omega$ tenkina:
-$$\frac{a-h}{\overline{a}-\overline{h}}\omega^2=\frac{i-h}{\overline{i}-\overline{h}} \Leftrightarrow \omega^2=\frac{qr}{p^3}\frac{(pq +qr+rp)}{(p+q+r)}.$$
+$$\frac{a-h}{\bb{a}-\bb{h}}\omega^2=\frac{i-h}{\bb{i}-\bb{h}} \Leftrightarrow \omega^2=\frac{qr}{p^3}\frac{(pq +qr+rp)}{(p+q+r)}.$$
 Naudodamiesi, kad liestinių ilgiai yra lygūs, gauname, kad $\phi$ tenkina:
 $$\frac{p-b}{|p-b|}\phi=\frac{r-b}{|r-b|} \Rightarrow \phi^3=-\frac{r^3}{p^3}.$$
 Pasinaudoję $(*)$ įrodome, kad $\phi^3=\omega^2.$ Iš to seka, kad
@@ -1175,25 +1366,26 @@ Beliko išnagrinėti kelis atvejus. Jeigu $k>0$, tai $\beta>\frac{2}{3}\pi$, o t
 
 
 
+
 \section{Figūrų plotas}
 
 Bet kurios figūros plotą galima apskaičiuoti suskaidant tą figūrą į trikampius, apskaičiuoti tų trikampių plotą ir viską sudėti. Šiame skyriuje išmoksime trikampio ploto formulę, kuria naudojantis galima apskaičiuoti bet kurios figūros plotą, ir išspręsime kelis su ja susijusius uždavinius.
 
 \begin{thmnr} \textit{(Trikampio ploto teorema)}
 Kai viršūnės $A, B, C$ išdėstytos prieš laikrodžio rodyklę, trikampio $ABC$ plotas lygus $S$, kur 
-$$S=\frac{i}{4}(a\overline{b} +b\overline{c}+c\overline{a} - b\overline{a} -c\overline{b}-a\overline{c}).$$
+$$S=\frac{i}{4}(a\bb{b} +b\bb{c}+c\bb{a} - b\bb{a} -c\bb{b}-a\bb{c}).$$
 Jeigu $A, B, C$ išdėstytos pagal laikrodžio rodyklę, trikampio $ABC$ plotas lygus $-S$.
 \end{thmnr}
 
 \begin{sprendimas}
 Nagrinėkime atvejį, kai viršūnės $A, B, C$ išdėstytos prieš laikrodžio rodyklę, kitas atvejis įrodomas analogiškai.
 
-Tegu trikampio $ABC$ aukštinė yra $BD$. Tuomet $c-a=|c-a|e^{i\theta}$, be to $\angle BDC = \frac {\pi}{2},$ todėl $(b-d)i=|b-d|e^{i\theta}$. Gauname, kad $\frac{1}{2}\overline{(c-a)} (b-d)i=\frac{1}{2}|c-a||b-d|=S.$
+Tegu trikampio $ABC$ aukštinė yra $BD$. Tuomet $c-a=|c-a|e^{i\theta}$, be to $\angle BDC = \frac {\pi}{2},$ todėl $(b-d)i=|b-d|e^{i\theta}$. Gauname, kad $\frac{1}{2}\bb{(c-a)} (b-d)i=\frac{1}{2}|c-a||b-d|=S.$
 
 Naudodamiesi tuo, kad taškas $D$ priklauso atkarpai $AC$, bei tuo, kad $BD$ yra statmena $AC$, randame tašką $D$:
-$$ d =\frac {1}{2}(a+b + (\bar{b}-\bar{a}) \frac{a-c}{ \bar{a}-\bar{c}}).$$
-Įsistatę gautąją $d$ išraišką į $S=\frac{1}{2}\overline{(c-a)} (b-d)i$ bei atlikę prastinimo veiksmus, gauname, kad
-$$S= \frac {i}{4}(a\bar{b}+ b \bar{c} + c \bar{a} - b\bar{a} - c \bar{b} - a \bar{c}).$$
+$$ d =\frac {1}{2}(a+b + (\bb{b}-\bb{a}) \frac{a-c}{ \bb{a}-\bb{c}}).$$
+Įsistatę gautąją $d$ išraišką į $S=\frac{1}{2}\bb{(c-a)} (b-d)i$ bei atlikę prastinimo veiksmus, gauname, kad
+$$S= \frac {i}{4}(a\bb{b}+ b \bb{c} + c \bb{a} - b\bb{a} - c \bb{b} - a \bb{c}).$$
 \end{sprendimas}
 
 
@@ -1208,15 +1400,15 @@ $ABC$ plotui.
 \end{pavnr}
 \begin{sprendimas}
 Tegu apie $ABC$ apibrėžtas apskritimas bus vienetinis. Tada gauname, kad $d = -b$ bei iš pagrindinės vienetinio apskritimo teoremos gauname
- $$ e= -\frac {bc}{a}= -bc \overline{a}.$$
+ $$ e= -\frac {bc}{a}= -bc \bb{a}.$$
 Liko įrodyti tai, kas yra prašoma, naudojant plotų teoremą.
 
-$$\frac{4}{i}S_{BEC}=b\overline{e}+e\overline{c}+c\overline{b}-\overline{b}e-\overline{e}c-\overline{c}b,$$
+$$\frac{4}{i}S_{BEC}=b\bb{e}+e\bb{c}+c\bb{b}-\bb{b}e-\bb{e}c-\bb{c}b,$$
 
-$$\frac{4}{i}S_{BCD}=b\overline{c}+c\overline{d}+d\overline{b}-\overline{b}c-\overline{c}d-\overline{d}b.$$
+$$\frac{4}{i}S_{BCD}=b\bb{c}+c\bb{d}+d\bb{b}-\bb{b}c-\bb{c}d-\bb{d}b.$$
 Įsistatome $d$ ir $e$ reikšmes ir gauname, ką ir reikėjo įrodyti:
 $$ \frac{4}{i}S_{BECD}=\frac{4}{i}(S_{BEC}+S_{BCD})=   
-a\bar b + b \bar c + c \bar a - \bar a b - \bar b c - \bar c a = \frac{4}{i}S_{ABC}.$$
+a\bb b + b \bb c + c \bb a - \bb a b - \bb b c - \bb c a = \frac{4}{i}S_{ABC}.$$
 \end{sprendimas}
 
 
@@ -1228,12 +1420,12 @@ Trikampio $ABC$ kampo $BCA$ pusiaukampinė kerta apibrėžtą apie $ABC$ apskrit
 \end{pavnr}
 \begin{sprendimas}
 
-Naudosimės kvadratine įbrėžtinio apskritimo teorema - tarsime, kad $a=u^2, b=v^2$ ir $c=w^2$. Tada $r=-uv$, o $l=\frac{u^2+w^2}{2}$. Pasinaudoję tuo, kad $Q$ priklauso stygai $RC$, ir tuo, kad $QL$ statmena $AC$, randame $q=\frac{u(w^2 - uv)}{u-v}$. Pažymime trikampio $RQL$ plotą S, o $t=(r\overline{q} +q\overline{l}+l\overline{r})$, tada $S=\frac{i}{4}(t-\overline{t})$. 
+Naudosimės kvadratine įbrėžtinio apskritimo teorema - tarsime, kad $a=u^2, b=v^2$ ir $c=w^2$. Tada $r=-uv$, o $l=\frac{u^2+w^2}{2}$. Pasinaudoję tuo, kad $Q$ priklauso stygai $RC$, ir tuo, kad $QL$ statmena $AC$, randame $q=\frac{u(w^2 - uv)}{u-v}$. Pažymime trikampio $RQL$ plotą S, o $t=(r\bb{q} +q\bb{l}+l\bb{r})$, tada $S=\frac{i}{4}(t-\bb{t})$. 
 Randame
 $$t=\frac{w^4(2v-u) +w^2(2u^2v-u^3-3uv^2) +2u^2v^3 - u^3v^2}{2uvw^2(u-v)},$$
-$$-\overline{t}=\frac{w^4(2u-v) +w^2(2uv^2-v^3-3u^2v) +2u^3v^2 - u^2v^3}{2uvw^2(u-v)}.$$
+$$-\bb{t}=\frac{w^4(2u-v) +w^2(2uv^2-v^3-3u^2v) +2u^3v^2 - u^2v^3}{2uvw^2(u-v)}.$$
 Gauname
-$$S=\frac{i}{4}(t-\overline{t})=\frac{i}{4}\frac{(w^4(u+v)-w^2(u^3+v^3+u^2v+v^2u)+u^2v^3+v^3u^2)}{2uvw^2(u-v)}.$$
+$$S=\frac{i}{4}(t-\bb{t})=\frac{i}{4}\frac{(w^4(u+v)-w^2(u^3+v^3+u^2v+v^2u)+u^2v^3+v^3u^2)}{2uvw^2(u-v)}.$$
 
 Matome, kad sukeitus ploto išraiškoje $u$ ir $v$ vietomis, gausime $-S$. Be to, žinome, kad sukeitus trikampio viršūnių orientaciją, ploto formulėje turime prirašyti minuso ženklą. Todėl naudojantis trikampių simetrija matome, kad $\triangle RPK$ plotas bus lygus S.
 \end{sprendimas}
@@ -1244,11 +1436,6 @@ Matome, kad sukeitus ploto išraiškoje $u$ ir $v$ vietomis, gausime $-S$. Be to
 
 \section{TODO: liekanos}
 
-Turime trikampį ABC. Tada nesunkiai galime rasti kampą A, kurį pasižymėkime $\theta$. Pastebime, kad $\frac{c-a}{|c-a|}$ yra lygiagreti atkarpai AC ir vienetinio ilgio, analogiškai $\frac{b-a}{|b-a|}$ yra lygiagreti AB ir vienetinio ilgio, todėl 
-
-$$\dfrac{\displaystyle \frac{c-a}{|c-a|}}{\displaystyle \frac{b-a}{|b-a|}}=e^{i\theta}.$$
-
-Dažniausiai sprendžiant uždavinius, paties kampo išsireikšti ir nereikia, nes $e^{i\theta} = e^{i\phi} \Leftrightarrow \theta = \phi + 2\pi k$, kažkokiam sveikajam skaičiui $k$. Todėl kalbant apie mažus kampus (mažesnius už $\pi$) gauname $\theta = \phi $.
 
 \begin{pavnr}
 Duota trapecija $ABCD$ su pagrindais $BC$ ir $AD$, o jos įstrižainių susikirtimo taškas yra lygus $P$. Taškas $M$ yra $BC$ vidurio taškas bei yra žinoma, kad $\angle ABD + \angle ACD = \pi.$ Ant kraštinės $AD$ paimtas taškas $X$ toks, kad $(\frac {PD}{PA})^2 = \frac {DX}{XA}$. Įrodykite, kad $MX$ yra statmena trapecijos pagrindams.
@@ -1259,17 +1446,33 @@ Duota trapecija $ABCD$ su pagrindais $BC$ ir $AD$, o jos įstrižainių susikirt
 nesunku pastebėti, kad $\Delta APD$ yra panašus $\Delta CPB$. Šis faktas yra labai naudingas tvarkantis su trapecijos kraštinėmis, nes gauname, kad $c=ka,  b=kd,$ kur $k$ yra realus teigiamas skaičius.
 
 Kadangi yra žinoma, jog $ ( \frac {PD}{PA})^2 = \frac {DX}{XA} $, gauname, kad 
-$$ x = \frac { da \bar a + ad \bar d }{ a \bar a + d \bar d},$$
-nes $ ( \frac {PD}{PA})^2 =\frac {d \bar d} {a \bar a} $ ir $\frac {DX}{XA} = \frac{d-x}{x-a}.$
+$$ x = \frac { da \bb a + ad \bb d }{ a \bb a + d \bb d},$$
+nes $ ( \frac {PD}{PA})^2 =\frac {d \bb d} {a \bb a} $ ir $\frac {DX}{XA} = \frac{d-x}{x-a}.$
 
 Koeficientą $k$ mums padės surasti tai, kad $ \angle ABD + \angle ACD = \pi $, nes (panašiai kaip keturių taškų priklausymo vienam apskritimui teoremos įrodyme) gauname lygybę:
-$$\frac {b-a}{\bar b - \bar a} : \frac { b-d}{\bar b - \bar d} =  \frac {d-c}{\bar d - \bar c} : \frac { c-a}{\bar c- \bar a}.$$
+$$\frac {b-a}{\bb b - \bb a} : \frac { b-d}{\bb b - \bb d} =  \frac {d-c}{\bb d - \bb c} : \frac { c-a}{\bb c- \bb a}.$$
 Pertvarkius lygybę gauname, kad 
-$$ k =  \frac { \bar d a + \bar a d }{a \bar a + d \bar d}. $$
+$$ k =  \frac { \bb d a + \bb a d }{a \bb a + d \bb d}. $$
 Galiausiai, pagal tiesių lygiagretumo ir statmenumo teoremą, $MX$ yra statmena trapecijos pagrindams tada ir tik tada, kai
- $$  \frac {m-x}{ \bar m - \bar x} = - \frac {a - d}{ \bar a - \bar d},$$
+ $$  \frac {m-x}{ \bb m - \bb x} = - \frac {a - d}{ \bb a - \bb d},$$
 kur žinome, jog $ m =\frac{b+c}{2}= k \frac { a+d} { 2} $, nes $M$ yra atkarpos $BC$ vidurio taškas. Taigi, įsistatę gautas reikšmes, įrodome tai, ką mums ir reikėjo gauti
-$$ \frac {m-x}{ \bar m - \bar x}= 
-\frac {(a-b)( \bar a b - \bar b a) }{(\bar a- \bar b)( \bar b a - \bar a b) } = - \frac {a - d}{ \bar a - \bar d}.$$
+$$ \frac {m-x}{ \bb m - \bb x}= 
+\frac {(a-b)( \bb a b - \bb b a) }{(\bb a- \bb b)( \bb b a - \bb a b) } = - \frac {a - d}{ \bb a - \bb d}.$$
 \end{sprendimas}
 \end{document}
+
+\subsection*{Tiesės lygtis}
+
+Naudodami kampo išraišką galime lengvai užrašyti tiesės lygtį:
+
+\begin{teig}
+  Taškas $z$ priklauso tiesei einančiai per tašką $a$ ir sudarančiai kampą 
+  $\theta$ su $Re$ ašimi tada ir tik tada, kai
+  $$\frac{z-a}{\bb{z}-\bb{a}}=e^{2i\theta}.$$
+\end{teig}
+
+\begin{proof}
+  Įrodymas vėl tiesiogiai seka iš kampo išraiškos. Taškas $z$ priklauso norimai
+  tiesei tada ir tik tada, kai vektorius $\vv{AZ}$ sudaro kampą $\theta$ arba
+  kampą $\theta + \pi$ su realiąja ašimi, o tai ir užrašyta lygybėje.
+\end{proof}
